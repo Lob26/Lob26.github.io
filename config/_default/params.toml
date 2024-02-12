@@ -1,0 +1,33 @@
+[profile]
+  portrait = "https://media.licdn.com/dms/image/D4E03AQFYGN6i5a3YOA/profile-displayphoto-shrink_800_800/0/1693601972207?e=1713398400&v=beta&t=OxgDywSttI1kPhXu8qTfHsRE-Iq5LBXGEPwyTOU54Ug"
+  description = "Back-end skills • Code analysis • Front-end skills • Team leadership • Quick decision-making"
+  firstname = "Pedro"
+  lastname = "Lobato"
+  title = "Software Engineer • Developer • Software Architect"
+  bio = """Hey there!👋 <br>
+  I'm a passionate student who's all about coding—both the behind-the-scenes magic and the flashy front-end stuff. While I lean towards the back-end, I've dabbled in a bit of everything. Throughout my time at school, I've been the go-to leader, rallying teams like a pro. <br>
+  Got a problem? I love cracking codes and finding creative fixes. Learning's my jam, so I'm always on the lookout for new skills to add to my toolkit.<br>
+  I'm on the hunt for a gig that's not just a job, but a chance to grow in every direction. Oh, and when things get wild, I'm your guy for quick, savvy decisions. Let's make cool stuff together! 🚀"""
+
+[contacts]
+  email = "p.lobato26@outlook.com"
+  phone = "+57 318-5079-105"
+  github = "Lob26"
+  linkedin = "pedro-luis-lobato-barros-1a15341b2"
+  # email = "pedro.lobato2610@gmail.com"
+
+[[actions]]
+  name = "Resume"
+  url = "https://raw.githubusercontent.com/Lob26/Lob26.github.io/main/assets/Pedro_Lobato_CV.pdf"
+
+[[actions]]
+  name = "Projects"
+  url = "/projects"
+
+[[actions]]
+  name = "Blog"
+  url = "/blog"
+
+[footer]
+  copyright = "© 2024 Mi Sitio Web. Todos los derechos reservados."
+  poweredby = false
