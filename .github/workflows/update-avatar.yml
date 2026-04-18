@@ -19,13 +19,29 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Debug token shape
+        env:
+          T: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+        run: |
+          # Print only lengths — never the value (it's auto-masked anyway).
+          echo "raw length:     ${#T}"
+          TRIMMED=$(printf '%s' "$T" | tr -d '[:space:]')
+          echo "trimmed length: ${#TRIMMED}"
+          if [ "${#T}" -ne "${#TRIMMED}" ]; then
+            echo "!! Token contains whitespace — this will break the API call."
+          fi
+
       - name: Fetch LinkedIn avatar
         env:
+          # Sanitize: strip any stray whitespace/newlines that leaked into the secret.
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
           LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
           LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
-        run: node scripts/fetch-linkedin-avatar.mjs
+        run: |
+          export LINKEDIN_ACCESS_TOKEN="$(printf '%s' "$LINKEDIN_ACCESS_TOKEN" | tr -d '[:space:]')"
+          export LINKEDIN_REFRESH_TOKEN="$(printf '%s' "$LINKEDIN_REFRESH_TOKEN" | tr -d '[:space:]')"
+          node scripts/fetch-linkedin-avatar.mjs
 
       - name: Commit updated avatar
         run: |
