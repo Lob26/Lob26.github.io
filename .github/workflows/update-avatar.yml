@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   refresh:
@@ -18,18 +19,6 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-
-      - name: Debug token shape
-        env:
-          T: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
-        run: |
-          # Print only lengths — never the value (it's auto-masked anyway).
-          echo "raw length:     ${#T}"
-          TRIMMED=$(printf '%s' "$T" | tr -d '[:space:]')
-          echo "trimmed length: ${#TRIMMED}"
-          if [ "${#T}" -ne "${#TRIMMED}" ]; then
-            echo "!! Token contains whitespace — this will break the API call."
-          fi
 
       - name: Fetch LinkedIn avatar
         env:
@@ -44,6 +33,7 @@ jobs:
           node scripts/fetch-linkedin-avatar.mjs
 
       - name: Commit updated avatar
+        id: commit
         run: |
           if [[ -n "$(git status --porcelain public/avatar.jpg)" ]]; then
             git config user.name "github-actions[bot]"
@@ -51,6 +41,16 @@ jobs:
             git add public/avatar.jpg
             git commit -m "chore(avatar): refresh LinkedIn profile picture"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "No avatar changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
+
+      # Bot-authored pushes do not trigger other workflows, so fire the Pages
+      # deploy ourselves whenever the avatar actually changed.
+      - name: Trigger Pages deploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref main
