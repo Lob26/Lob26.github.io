@@ -60,16 +60,43 @@ try {
     process.exit(0)
   }
 
-  const userInfoRes = await fetch('https://api.linkedin.com/v2/userinfo', {
+  let pictureUrl = null
+
+  // Path A: OIDC product ("Sign In with LinkedIn using OpenID Connect").
+  const oidcRes = await fetch('https://api.linkedin.com/v2/userinfo', {
     headers: { Authorization: `Bearer ${token}` },
   })
-  if (!userInfoRes.ok) {
-    throw new Error(`/v2/userinfo responded ${userInfoRes.status}: ${await userInfoRes.text()}`)
+  if (oidcRes.ok) {
+    const info = await oidcRes.json()
+    pictureUrl = info.picture ?? null
+  } else {
+    console.error(`[avatar] /v2/userinfo ${oidcRes.status}: ${await oidcRes.text()}`)
   }
-  const info = await userInfoRes.json()
-  if (!info.picture) throw new Error('userinfo did not include a picture URL')
 
-  const imgRes = await fetch(info.picture)
+  // Path B: legacy "Sign In with LinkedIn" (r_liteprofile) fallback.
+  if (!pictureUrl) {
+    const meRes = await fetch(
+      'https://api.linkedin.com/v2/me?projection=(id,profilePicture(displayImage~:playableStreams))',
+      { headers: { Authorization: `Bearer ${token}`, 'X-Restli-Protocol-Version': '2.0.0' } },
+    )
+    if (!meRes.ok) {
+      throw new Error(`both /v2/userinfo and /v2/me failed; /v2/me returned ${meRes.status}: ${await meRes.text()}`)
+    }
+    const me = await meRes.json()
+    const elements = me?.profilePicture?.['displayImage~']?.elements ?? []
+    const largest = elements
+      .filter((e) => e?.identifiers?.[0]?.identifier)
+      .sort((a, b) => {
+        const aw = a?.data?.['com.linkedin.digitalmedia.mediaartifact.StillImage']?.storageSize?.width ?? 0
+        const bw = b?.data?.['com.linkedin.digitalmedia.mediaartifact.StillImage']?.storageSize?.width ?? 0
+        return bw - aw
+      })[0]
+    pictureUrl = largest?.identifiers?.[0]?.identifier ?? null
+  }
+
+  if (!pictureUrl) throw new Error('No picture URL found in either endpoint')
+
+  const imgRes = await fetch(pictureUrl)
   if (!imgRes.ok) throw new Error(`Image download responded ${imgRes.status}`)
 
   const buf = Buffer.from(await imgRes.arrayBuffer())
