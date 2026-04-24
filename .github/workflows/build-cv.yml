@@ -1,0 +1,61 @@
+name: Build CV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cv/main.tex'
+      - '.github/workflows/build-cv.yml'
+  pull_request:
+    paths:
+      - 'cv/main.tex'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-cv-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: cv
+          compiler: pdflatex
+          args: -interaction=nonstopmode -halt-on-error -file-line-error
+
+      - name: Stage PDF into public/
+        run: |
+          mkdir -p public
+          cp cv/main.pdf public/Pedro_Lobato_CV.pdf
+
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdf
+          path: public/Pedro_Lobato_CV.pdf
+          if-no-files-found: error
+
+      - name: Commit PDF back to repo
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/Pedro_Lobato_CV.pdf
+          if git diff --cached --quiet; then
+            echo "No PDF changes to commit."
+          else
+            git commit -m "chore(cv): rebuild Pedro_Lobato_CV.pdf [skip ci]"
+            git push
+          fi

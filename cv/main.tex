@@ -1,0 +1,235 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.82,top=1.4cm,bottom=1.8cm]{geometry}
+% Disable microtype font expansion (moderncv loads microtype; fontawesome5's
+% bitmap shapes are not scalable, so auto-expansion crashes pdflatex).
+\microtypesetup{expansion=false}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{etoolbox}
+\usepackage{needspace}
+
+% --- Visual palette: ink near-black for structure, navy for accents, ---
+% --- sky for soft highlights, slate for body, softgray for descriptions.
+\definecolor{ink}{HTML}{0B1220}
+\definecolor{navy}{HTML}{1D4ED8}
+\definecolor{azure}{HTML}{2563EB}
+\definecolor{sky}{HTML}{60A5FA}
+\definecolor{slate}{HTML}{334155}
+\definecolor{softgray}{HTML}{6B7280}
+\definecolor{deepgray}{HTML}{374151}
+\definecolor{whisper}{HTML}{EFF6FF}
+\definecolor{mist}{HTML}{F1F5F9}
+
+% Override moderncv's internal palette (color1 drives section rules + headings,
+% color2 is the name). Gives Experience/Projects headings a navy rule automatically.
+\colorlet{color1}{navy}
+\colorlet{color2}{ink}
+
+% Body typography: name in ink, role in navy italic, sections in ink bold with
+% the navy rule coming from moderncv classic itself.
+\renewcommand*{\namefont}{\fontsize{28}{32}\bfseries\upshape\color{ink}}
+\renewcommand*{\titlefont}{\fontsize{14}{16}\mdseries\slshape\color{navy}}
+\renewcommand*{\addressfont}{\small\mdseries\slshape\color{softgray}}
+\renewcommand*{\quotefont}{\large\slshape\color{slate}}
+\renewcommand*{\sectionfont}{\Large\bfseries\color{ink}}
+\renewcommand*{\subsectionfont}{\large\mdseries\slshape\color{navy}}
+
+\setlength{\footskip}{45pt}
+
+% --- Custom helpers ---------------------------------------------------------
+% Body description under each bullet: slightly warmer than before.
+\newcommand{\impact}[1]{{\color{slate}\small #1}}
+% Metric: navy bold + a soft whisper background so the number pops.
+\newcommand{\metric}[1]{%
+  \begingroup
+  \setlength{\fboxsep}{2pt}%
+  \colorbox{whisper}{\color{navy}\bfseries\strut #1}%
+  \endgroup
+}
+% Stakeholder chip: bracketed, sky italic, slightly stronger than before.
+\newcommand{\stakeholders}[1]{{\color{azure}\footnotesize\textsf{\textit{[#1]}}}}
+% Role label inside bullets (the bold lead-in): navy bold.
+\newcommand{\rolebold}[1]{{\color{navy}\bfseries #1}}
+% Callout box for Profile and project human/technical pairs.
+\newcommand{\callout}[1]{%
+  \begingroup
+  \setlength{\fboxsep}{0.8em}%
+  \noindent\fcolorbox{sky!40}{whisper}{%
+    \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+      \color{slate}\small #1%
+    \end{minipage}%
+  }%
+  \endgroup
+}
+% Visual separator: a softer, two-tone rule (navy dot + grey line).
+\newcommand{\softrule}{%
+  \vspace{0.45em}
+  \noindent\hspace{0pt}{\color{navy}\rule{6pt}{2pt}}{\color{softgray!40}\rule[0.5pt]{0.92\linewidth}{0.4pt}}\hspace{0pt}%
+  \vspace{0.35em}
+}
+
+% --- Identity ---------------------------------------------------------------
+\name{Pedro Luis}{Lobato Barros}
+\title{SRE \& Core Logic Lead}
+\address{Bogotá D.C., Colombia}{Remote-first}{}
+\phone[mobile]{+57~318~507~9105}
+\email{pedro.lobato2610@gmail.com}
+\social[linkedin]{lobaton2610}
+\social[github]{Lob26}
+
+\begin{document}
+\makecvtitle
+\vspace{-1.2em}
+
+% --- Profile ----------------------------------------------------------------
+\section{Profile}
+\cvitem{}{%
+  Software engineer with nearly two years in high-growth Fintech and Proptech. Track record of cutting operational wait times by up to \textbf{90\%}, defending production under live attack, and bridging backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). Fluent across English and Spanish with Legal, Commercial and Operations.
+}
+
+\softrule
+
+% --- Business capabilities --------------------------------------------------
+% Clean 2x2 grid. Label lives on its own line so narrow columns don't hyphenate
+% mid-word; descriptions kept short (~14 words) so each cell stays two lines.
+\section{Business Capabilities}
+\cvdoubleitem%
+  {\faHandshake}{\rolebold{Stakeholder Management}\newline%
+    \impact{Turn Legal, Commercial and Operations needs into engineering that ships.}}%
+  {\faUsers}{\rolebold{Cross-functional Leadership}\newline%
+    \impact{Bridge engineering, product and business so decisions land, not stall.}}
+\cvdoubleitem%
+  {\faShieldVirus}{\rolebold{Technical Ownership}\newline%
+    \impact{End-to-end ownership of core engines, architecture through post-incident review.}}%
+  {\faBell}{\rolebold{Incident Response}\newline%
+    \impact{Calm, visible post-mortems --- people see what happened and what changed.}}
+
+\softrule
+
+% --- Technical toolbox (clean single-column list, left label / right content)
+\section{Technical Toolbox}
+\cvitem{Languages}{Python, Go, Ruby, TypeScript, Solidity, JavaScript, SQL}
+\cvitem{Integrations}{Salesforce, Slack, RabbitMQ, REST APIs, custom AWS \& Slack wrappers}
+\cvitem{Databases}{PostgreSQL, MySQL}
+\cvitem{DevOps \& Cloud}{AWS, GCP, Docker, CI/CD, GitHub Actions}
+\cvitem{Practices}{SRE principles, security architecture, system design, code review}
+\cvitem{Languages spoken}{English (C1) · Spanish (Native)}
+
+\softrule
+
+% --- Experience -------------------------------------------------------------
+% Keep the heading with the first entry so it does not float at a page bottom.
+\needspace{10\baselineskip}
+\section{Experience}
+\nopagebreak
+
+\cventry{Aug 2024 -- Present}%
+  {\textbf{Software Engineer} --- SRE \& Core Logic Lead}%
+  {Duppla}%
+  {Bogotá, Colombia}%
+  {\textit{Technical ownership · Cross-functional lead}}{%
+  I own the core business engines and the reliability practice, acting as a translator between engineering and the commercial, legal and operations teams.
+  \begin{itemize}
+    \item \rolebold{Core Product Ownership} \metric{(--83\%)} \stakeholders{Commercial · Operations}\\
+      \impact{Partnered with Operations and Commercial to redesign the Real Estate Evaluator. A 90-minute wait collapsed to 15 --- the 83\% returned most of an afternoon to analysts talking to clients instead of refreshing a screen.}
+    \item \rolebold{Live Attack Defense} \metric{(100\% repelled)} \stakeholders{Engineering · Leadership}\\
+      \impact{A bot slipped in a crafted request that exposed the full API surface; attacks on billing and reporting endpoints followed within minutes. I caught the attack live through the observability I had designed, shipped defenses on the targeted endpoints in real time, and hardened the backend into a posture that has repelled every subsequent attempt.}
+    \item \rolebold{Contract Automation} \stakeholders{Legal · Product}\\
+      \impact{Leading a contract generation engine co-designed with Legal, unblocking deal flow during Series A preparation.}
+    \item \rolebold{Salesforce Integration} \stakeholders{Commercial · RevOps}\\
+      \impact{Bridge engineer between backend services and the commercial platform, giving the revenue team a CRM source of truth.}
+    \item \rolebold{Developer Experience} \metric{(--30\%)} \stakeholders{Engineering}\\
+      \impact{Custom AWS and Slack wrappers that standardised tooling and removed 30\% of technical debt --- new engineers ship on day one instead of deciphering.}
+  \end{itemize}
+}
+
+\cventry{Jun 2024 -- Aug 2024}%
+  {\textbf{Software Development Intern}}%
+  {Duppla}%
+  {Bogotá, Colombia}%
+  {\textit{First production ownership}}{%
+  Took the early leap from academic code into production work: backend services for customer assessment and internal logistics on Slack.
+  \begin{itemize}
+    \item \rolebold{Business Process Migration} \metric{(--90\%)} \stakeholders{Legal · Risk · Origination}\\
+      \impact{Rebuilt the Client Evaluator backend in conversation with Legal, Risk and Origination. Thirty minutes of manual work collapsed into three --- 90\% of queue time returned to the people who actually weigh the hard cases.}
+    \item \rolebold{Internal Logistics} \stakeholders{People Ops}\\
+      \impact{Slack automation for attendance and office logistics still used daily by HQ.}
+    \item \rolebold{Stability} \stakeholders{IT}\\
+      \impact{Credentialing code running with minimal maintenance two years post-launch --- the quiet kind of reliability.}
+  \end{itemize}
+}
+
+\softrule
+
+% --- Education --------------------------------------------------------------
+\section{Education}
+\cventry{2020 -- 2027 (Expected)}%
+  {\textbf{B.S. Systems \& Computing Engineering}}%
+  {Universidad de los Andes}%
+  {Bogotá, Colombia}%
+  {}{%
+    \impact{Relevant coursework: Software Architecture, Distributed Systems, Cybersecurity, Databases, Cloud Computing.}%
+  }
+
+\newpage
+
+% --- Notable Projects -------------------------------------------------------
+\section{Notable Engineering Projects}
+
+% A project card: title (+ optional metric right-aligned), stakeholders line,
+% human problem paragraph, technical answer paragraph. Uses the full main
+% column (empty label slot) so the title and metric pill share one line.
+\newcommand{\projectcard}[5]{%
+  % #1 title  #2 metric (may be empty)  #3 stakeholders  #4 human problem  #5 technical answer
+  % Parbox lets us use \par inside \cvitem's content cell (moderncv disallows it otherwise).
+  \cvitem{}{%
+    \parbox{\linewidth}{%
+      {\color{ink}\bfseries #1}\ifstrempty{#2}{}{\hfill\metric{#2}}\\[2pt]%
+      \stakeholders{#3}\\[3pt]%
+      {\color{slate}\small\textbf{Human problem.}~#4}\\[1pt]%
+      {\color{slate}\small\textbf{Technical answer.}~#5}%
+    }%
+  }%
+  \vspace{0.35em}%
+}
+
+\projectcard%
+  {Real Estate Evaluation Engine}%
+  {-83\% processing time}%
+  {Commercial · Operations}%
+  {Commercial analysts waited 90 minutes per property evaluation --- long enough for a client to cool off and a negotiation to stall.}%
+  {Migrated the engine out of Retool into a custom intranet, tightened pricing logic and automated upstream data flows so analysts see a result in 15 minutes.}
+
+\projectcard%
+  {Business Client Evaluator}%
+  {-90\% cycle time}%
+  {Commercial · Origination}%
+  {Origination sat on every prospect for 30 minutes of manual screening --- good leads went cold in the queue while unfit ones ate the same half-hour before they could be discarded.}%
+  {Full backend rewrite: new data model, leaner queries and asynchronous scoring. Evaluation cycle dropped from 30 minutes to 3, letting the team act on signal instead of grinding through noise.}
+
+\projectcard%
+  {Contract Automation Engine}%
+  {}%
+  {Legal · Product}%
+  {Every contract was hand-crafted from manual templates riddled with typo-prone patterns and incomplete variable slots. The team burned hours per deal, lost traceability between versions, and shipped errors that slipped past review.}%
+  {Rebuilt the templates from scratch to remove error-prone variable patterns, then wired a generation-and-review pipeline that pulls each business opportunity's data automatically --- every contract is now versioned, validated, and auditable end-to-end.}
+
+\projectcard%
+  {Live Attack Defense}%
+  {100\% repelled}%
+  {Engineering · Leadership}%
+  {A bot slipped in a crafted request that revealed our full API surface; within minutes, attacks flooded the billing and reporting endpoints --- the kind of hit that moves real money.}%
+  {Caught the attack live through the observability I had designed, shipped endpoint-level defenses on the targeted routes before they could execute, and hardened the backend into a posture that has repelled every subsequent attempt as attack volume has grown.}
+
+\cvitem{\textbf{Public Repositories}}{%
+  \href{https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Back}{\faGithub\ Fullstack Spring/Angular App}%
+  \hspace{1em}\textcolor{softgray}{\textbar}\hspace{1em}%
+  \href{https://github.com/Lob26/ISIS2304_Alohandes}{\faGithub\ JDO Data Persistence Project}%
+}
+
+\end{document}

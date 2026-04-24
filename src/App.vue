@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { profile, ui } from './data/profile'
 import HeroSection from './components/HeroSection.vue'
+import PhilosophySection from './components/PhilosophySection.vue'
 import ExperienceTimeline from './components/ExperienceTimeline.vue'
 import ProjectsGrid from './components/ProjectsGrid.vue'
 import SkillsCloud from './components/SkillsCloud.vue'
@@ -15,6 +16,7 @@ const { t } = useI18n()
 const year = new Date().getFullYear()
 
 const navItems = computed(() => [
+  { href: '#philosophy', label: t(ui.nav.philosophy) },
   { href: '#experience', label: t(ui.nav.experience) },
   { href: '#projects', label: t(ui.nav.projects) },
   { href: '#skills', label: t(ui.nav.skills) },
@@ -58,6 +60,7 @@ const navItems = computed(() => [
 
   <main>
     <HeroSection />
+    <PhilosophySection />
     <ExperienceTimeline />
     <ProjectsGrid />
     <SkillsCloud />

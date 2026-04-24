@@ -50,7 +50,6 @@ onBeforeUnmount(() => {
     aria-labelledby="hero-heading"
     class="relative overflow-hidden pt-20 pb-16 sm:pt-28 sm:pb-24"
   >
-    <!-- Decorative parallax layer: soft gradient blob, hidden on mobile. -->
     <div
       ref="parallaxEl"
       aria-hidden="true"
@@ -97,6 +96,31 @@ onBeforeUnmount(() => {
           >
             {{ t(profile.bio) }}
           </p>
+
+          <!-- Pillars: Role and education as visual anchors. -->
+          <dl
+            class="mt-8 grid gap-3 sm:grid-cols-2"
+            :aria-label="profile.name"
+          >
+            <div
+              v-for="(p, i) in profile.pillars"
+              :key="i"
+              class="rounded-lg border border-slate-200 bg-white/60 p-4 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-sm dark:border-slate-800 dark:bg-slate-900/60"
+            >
+              <dt
+                class="font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400"
+              >
+                {{ t(p.label) }}
+              </dt>
+              <dd class="mt-1.5 text-sm font-semibold text-slate-900 dark:text-slate-50">
+                {{ t(p.value) }}
+              </dd>
+              <dd class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                {{ t(p.detail) }}
+              </dd>
+            </div>
+          </dl>
+
           <div class="mt-8 flex flex-wrap gap-3">
             <a
               :href="`mailto:${profile.links.email}`"
