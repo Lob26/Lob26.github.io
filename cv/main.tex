@@ -159,6 +159,8 @@
 \softrule
 
 % --- Education --------------------------------------------------------------
+% Keep the heading with its single entry so it never orphans at a page bottom.
+\needspace{6\baselineskip}
 \section{Education}
 \cventry{2020 -- 2027 (Expected)}%
   {\textbf{B.S. Systems \& Computing Engineering}}%
@@ -166,57 +168,13 @@
   {Bogotá, Colombia}%
   {}{}
 
-\newpage
+\softrule
 
-% --- Notable Projects -------------------------------------------------------
-\section{Notable Engineering Projects}
-
-% A project card: title (+ optional metric right-aligned), stakeholders line,
-% human problem paragraph, technical answer paragraph. Uses the full main
-% column (empty label slot) so the title and metric pill share one line.
-\newcommand{\projectcard}[5]{%
-  % #1 title  #2 metric (may be empty)  #3 stakeholders  #4 human problem  #5 technical answer
-  % Parbox lets us use \par inside \cvitem's content cell (moderncv disallows it otherwise).
-  \cvitem{}{%
-    \parbox{\linewidth}{%
-      {\color{ink}\bfseries #1}\ifstrempty{#2}{}{\hfill\metric{#2}}\\[2pt]%
-      \stakeholders{#3}\\[3pt]%
-      {\color{slate}\small\textbf{Human problem.}~#4}\\[1pt]%
-      {\color{slate}\small\textbf{Technical answer.}~#5}%
-    }%
-  }%
-  \vspace{0.35em}%
-}
-
-\projectcard%
-  {Real Estate Evaluation Engine}%
-  {-96\% analyst time}%
-  {Commercial · Operations}%
-  {Commercial analysts waited 90 minutes per property evaluation --- long enough for a client to cool off and a negotiation to stall. I noticed the wait, asked about it, and was invited onto the project.}%
-  {Four iterations, each answering the constraint the last one exposed. Full backend automation first; then a human-in-the-loop review layer on Retool; then a migration into our own intranet once low-code turned into a fixed-size box that could not absorb the requests coming in; then an end-to-end pass over back and front --- events, caching, vectorised scoring --- once building the contract engine taught me where the remaining time was hiding. Analyst time went 90 minutes to 15 to 10 to 4 on the happy path, 7 on a normal one. The engine sustains 1,100 automated evaluations a day and 100 human reviews per evaluator; an automated run is 3 minutes, 90 seconds of which belongs to a third-party data provider.}
-
-\projectcard%
-  {Business Client Evaluator}%
-  {-90\% cycle time}%
-  {Commercial · Origination}%
-  {Origination sat on every prospect for 30 minutes of manual screening --- good leads went cold in the queue while unfit ones ate the same half-hour before they could be discarded. The brief was one sentence: get it under 10 minutes.}%
-  {I traced the commercial call flow first to find which data actually gated a decision, because the naive answer --- pre-warm everything --- breaks on the leads that reach the stage with fields missing. Full backend rewrite around that finding: new data model, leaner queries, asynchronous scoring. The cycle dropped from 30 minutes to 3, and the service has since absorbed a 1,500-evaluation day against a normal load of 170 without failing --- if the top of the funnel widens, the engine is already there.}
-
-\projectcard%
-  {Contract Automation Engine}%
-  {-90\% review errors}%
-  {Legal · Commercial · Operations}%
-  {Contract review was the bottleneck the whole business ran through: three separate teams all sent requests, and every contract was hand-crafted from templates riddled with typo-prone patterns and half-filled variable slots. An earlier ``automation'' had only put the data on one low-code page --- no generation, no validation, and covering part of the flow --- and was painful enough to work on that even small fixes stalled. Nobody owned it. I made the case for the urgency, got no takers, and picked it up.}%
-  {Audited the business process and the data flow before writing anything, then built the real automation from scratch as the sole engineer. Every template rebuilt around typed placeholders, with a validation layer in front of generation so an incomplete or inconsistent contract is refused at the boundary rather than caught at a lawyer's desk. It now issues 100\% of the company's contracts --- versioned, validated, auditable --- with review errors down 90\% and request-to-approval turnaround down 40\%. Load-tested in one hour to roughly fifteen times a normal day's volume, bounded by the document provider's rate limit rather than by the pipeline: sized for two orders of magnitude of growth, not for today. Stable enough since launch to sit in maintenance, owned by one engineer.}
-
-\projectcard%
-  {Live Attack Defense}%
-  {100\% repelled}%
-  {Engineering · Leadership}%
-  {A bot slipped in a crafted request that revealed our full API surface; within minutes, attacks flooded the billing and reporting endpoints --- the kind of hit that moves real money.}%
-  {Months earlier, in my seventh month, I had added a deliberately small detector: raise on error, then sort into two heuristic buckets --- HTTP exceptions carrying known attack signatures, and sources accumulating failed requests. It was not a rich feature, and it did not need to be; it is what caught the attack live. I shipped endpoint-level defenses on the targeted routes before they could execute and hardened the backend into a posture that has repelled every subsequent attempt as attack volume has grown.}
-
-\cvitem{\textbf{Public Repositories}}{%
+% --- Public Repositories ----------------------------------------------------
+% The four engineering projects live in the Experience section above; repeating
+% them as cards padded the CV to five pages, so only the public links remain.
+\section{Public Repositories}
+\cvitem{}{%
   \href{https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Back}{\faGithub\ Fullstack Spring/Angular App}%
   \hspace{1em}\textcolor{softgray}{\textbar}\hspace{1em}%
   \href{https://github.com/Lob26/ISIS2304_Alohandes}{\faGithub\ JDO Data Persistence Project}%
