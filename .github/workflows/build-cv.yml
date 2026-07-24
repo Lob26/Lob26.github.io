@@ -56,6 +56,9 @@ jobs:
           if git diff --cached --quiet; then
             echo "No PDF changes to commit."
           else
-            git commit -m "chore(cv): rebuild Pedro_Lobato_CV.pdf [skip ci]"
+            # No [skip ci]: this commit must trigger deploy.yml so Pages gets the
+            # fresh PDF. It cannot loop build-cv — that only runs on cv/main.tex,
+            # not on public/*.pdf.
+            git commit -m "chore(cv): rebuild Pedro_Lobato_CV.pdf"
             git push
           fi
