@@ -75,7 +75,7 @@
 
 % --- Identity ---------------------------------------------------------------
 \name{Pedro Luis}{Lobato Barros}
-\title{SRE \& Core Logic Lead}
+\title{Core Logic Lead \& Production Ownership}
 \address{Bogotá D.C., Colombia}{Remote-first}{}
 \phone[mobile]{+57~318~507~9105}
 \email{pedro.lobato2610@gmail.com}
@@ -89,33 +89,22 @@
 % --- Profile ----------------------------------------------------------------
 \section{Profile}
 \cvitem{}{%
-  Software engineer with nearly two years in high-growth Fintech and Proptech. Track record of cutting operational wait times by up to \textbf{90\%}, defending production under live attack, and bridging backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). Fluent across English and Spanish with Legal, Commercial and Operations.
+  Owner of the three engines a high-growth Fintech and Proptech business runs on --- property valuation, client screening and contract generation --- and of how they behave in production. Cut operational wait times by up to \textbf{96\%}, caught and repelled a live attack on production, and bridged backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). Sole engineer on every core engine I have built: I grow by taking on harder systems, not larger teams. Fluent across English and Spanish with Legal, Commercial and Operations.
 }
 
-\softrule
-
-% --- Business capabilities --------------------------------------------------
-% Clean 2x2 grid. Label lives on its own line so narrow columns don't hyphenate
-% mid-word; descriptions kept short (~14 words) so each cell stays two lines.
-\section{Business Capabilities}
-\cvdoubleitem%
-  {\faHandshake}{\rolebold{Stakeholder Management}\newline%
-    \impact{Turn Legal, Commercial and Operations needs into engineering that ships.}}%
-  {\faUsers}{\rolebold{Cross-functional Leadership}\newline%
-    \impact{Bridge engineering, product and business so decisions land, not stall.}}
-\cvdoubleitem%
-  {\faShieldVirus}{\rolebold{Technical Ownership}\newline%
-    \impact{End-to-end ownership of core engines, architecture through post-incident review.}}%
-  {\faBell}{\rolebold{Incident Response}\newline%
-    \impact{Calm, visible post-mortems --- people see what happened and what changed.}}
+\vspace{0.2em}
+\callout{\textbf{Systems that stopped needing me.} Credentialing code still running with minimal maintenance two years after launch · a contract engine issuing every contract the company signs while sitting in maintenance · a backend posture that has held as attack volume grew. I measure the work by what it does after I stop touching it.}
 
 \softrule
+
+% Business Capabilities grid removed: every Experience bullet already names its
+% stakeholders, so the chips restated the evidence instead of adding to it.
 
 % --- Technical toolbox (clean single-column list, left label / right content)
 \section{Technical Toolbox}
 \cvitem{Languages}{Python, Go, Ruby, TypeScript, Solidity, JavaScript, SQL}
-\cvitem{Integrations}{Salesforce, Slack, RabbitMQ, REST APIs, custom AWS \& Slack wrappers}
-\cvitem{Databases}{PostgreSQL, MySQL}
+\cvitem{Integrations}{Salesforce (Apex, REST), Slack, RabbitMQ, REST APIs, custom AWS \& Slack wrappers}
+\cvitem{Databases \& Data}{PostgreSQL, BigQuery, SOQL/SOSL}
 \cvitem{DevOps \& Cloud}{AWS, GCP, Docker, CI/CD, GitHub Actions}
 \cvitem{Practices}{SRE principles, security architecture, system design, code review}
 \cvitem{Languages spoken}{English (C1) · Spanish (Native)}
@@ -129,22 +118,24 @@
 \nopagebreak
 
 \cventry{Aug 2024 -- Present}%
-  {\textbf{Software Engineer} --- SRE \& Core Logic Lead}%
+  {\textbf{Software Engineer} --- Core Logic Lead}%
   {Duppla}%
   {Bogotá, Colombia}%
   {\textit{Technical ownership · Cross-functional lead}}{%
-  I own the core business engines and the reliability practice, acting as a translator between engineering and the commercial, legal and operations teams.
+  Translator between engineering and the commercial, legal and operations teams --- and the engineer who then builds what the conversation agreed on.
   \begin{itemize}
-    \item \rolebold{Core Product Ownership} \metric{(--83\%)} \stakeholders{Commercial · Operations}\\
-      \impact{Partnered with Operations and Commercial to redesign the Real Estate Evaluator. A 90-minute wait collapsed to 15 --- the 83\% returned most of an afternoon to analysts talking to clients instead of refreshing a screen.}
+    \item \rolebold{Core Product Ownership} \metric{(--96\%)} \stakeholders{Commercial · Operations}\\
+      \impact{Rebuilt the Real Estate Evaluator over four iterations: full backend automation, then a human-in-the-loop review layer, then a migration off Retool once low-code became the constraint rather than the shortcut, then an end-to-end pass over back and front. Analyst time per property went 90 minutes to 15 to 10 to 4 on the happy path. The engine sustains 1,100 automated evaluations a day, and the 3 minutes an automated run still takes is 90 seconds of a third-party data provider, not our code.}
     \item \rolebold{Live Attack Defense} \metric{(100\% repelled)} \stakeholders{Engineering · Leadership}\\
-      \impact{A bot slipped in a crafted request that exposed the full API surface; attacks on billing and reporting endpoints followed within minutes. I caught the attack live through the observability I had designed, shipped defenses on the targeted endpoints in real time, and hardened the backend into a posture that has repelled every subsequent attempt.}
-    \item \rolebold{Contract Automation} \stakeholders{Legal · Product}\\
-      \impact{Leading a contract generation engine co-designed with Legal, unblocking deal flow during Series A preparation.}
-    \item \rolebold{Salesforce Integration} \stakeholders{Commercial · RevOps}\\
-      \impact{Bridge engineer between backend services and the commercial platform, giving the revenue team a CRM source of truth.}
-    \item \rolebold{Developer Experience} \metric{(--30\%)} \stakeholders{Engineering}\\
-      \impact{Custom AWS and Slack wrappers that standardised tooling and removed 30\% of technical debt --- new engineers ship on day one instead of deciphering.}
+      \impact{Months before it mattered I had added a deliberately small detector --- two heuristic buckets: HTTP exceptions carrying known attack signatures, and sources accumulating failed requests. When a bot exposed the full API surface and attacks hit billing and reporting within minutes, that cheap signal is what caught it live. I shipped endpoint-level defenses in real time and hardened the backend into a posture that has repelled every attempt since, as volume has grown.}
+    \item \rolebold{Contract Automation} \metric{(--90\% review errors)} \stakeholders{Legal · Commercial · Operations}\\
+      \impact{Sole designer and owner of the contract generation engine --- unowned work I picked up after making the case for it --- now the only path through which the company issues contracts. Modelled the legal document as validated data instead of a text template: typed placeholders and validation rules refuse an incomplete contract before it reaches a lawyer. Review errors down 90\%, request-to-approval turnaround down 40\%. Load-tested to roughly fifteen times current daily volume in a single hour, where the ceiling is the document provider's rate limit rather than the pipeline --- sized for two orders of magnitude of growth, not for today.}
+    \item \rolebold{Salesforce Bridge} \stakeholders{Commercial · RevOps}\\
+      \impact{Not a Salesforce engineer --- the engineer on the other side of the seam. I know the org's data model, SOQL/SOSL, Apex and the REST surface well enough to be the one proposing the schema and optimisation changes, and I contribute the integration side: data cleansing, shared utilities, and keeping CRM records consistent enough for the revenue team to trust them.}
+    \item \rolebold{Engineering Leverage} \metric{(--30\% tech debt)} \stakeholders{Engineering}\\
+      \impact{Custom AWS and Slack wrappers now used by the whole team --- four engineers, every backend --- so nobody hand-rolls a client per service. The front-end architecture I designed for contract generation became the pattern the evaluator rebuild was based on. I also audit code I do not own and take the reliability defects I find there; new engineers ship on day one instead of deciphering.}
+    \item \rolebold{Technical Foresight} \stakeholders{Engineering · Leadership}\\
+      \impact{When AI-generated internal front-ends started appearing, I argued at the third one that the pattern outruns ownership faster than anyone expects, and that the cost arrives later as risk nobody has scoped. The trajectory played out on the timeline I described. I also made the case that a design guide alone cannot steer generated code --- without machine-readable context an agent builds a generic product, not yours. I raise this class of problem before it becomes a ticket.}
   \end{itemize}
 }
 
@@ -156,7 +147,7 @@
   Took the early leap from academic code into production work: backend services for customer assessment and internal logistics on Slack.
   \begin{itemize}
     \item \rolebold{Business Process Migration} \metric{(--90\%)} \stakeholders{Legal · Risk · Origination}\\
-      \impact{Rebuilt the Client Evaluator backend in conversation with Legal, Risk and Origination. Thirty minutes of manual work collapsed into three --- 90\% of queue time returned to the people who actually weigh the hard cases.}
+      \impact{Given one line of direction --- ``get this under 10 minutes'' --- I traced the commercial call flow to find which data actually gated a decision, then rebuilt the Client Evaluator backend around it instead of pre-warming everything. Thirty minutes of manual work collapsed into three. It has since absorbed a 1,500-evaluation day against a normal load of 170 without failing.}
     \item \rolebold{Internal Logistics} \stakeholders{People Ops}\\
       \impact{Slack automation for attendance and office logistics still used daily by HQ.}
     \item \rolebold{Stability} \stakeholders{IT}\\
@@ -172,9 +163,7 @@
   {\textbf{B.S. Systems \& Computing Engineering}}%
   {Universidad de los Andes}%
   {Bogotá, Colombia}%
-  {}{%
-    \impact{Relevant coursework: Software Architecture, Distributed Systems, Cybersecurity, Databases, Cloud Computing.}%
-  }
+  {}{}
 
 \newpage
 
@@ -200,31 +189,31 @@
 
 \projectcard%
   {Real Estate Evaluation Engine}%
-  {-83\% processing time}%
+  {-96\% analyst time}%
   {Commercial · Operations}%
-  {Commercial analysts waited 90 minutes per property evaluation --- long enough for a client to cool off and a negotiation to stall.}%
-  {Migrated the engine out of Retool into a custom intranet, tightened pricing logic and automated upstream data flows so analysts see a result in 15 minutes.}
+  {Commercial analysts waited 90 minutes per property evaluation --- long enough for a client to cool off and a negotiation to stall. I noticed the wait, asked about it, and was invited onto the project.}%
+  {Four iterations, each answering the constraint the last one exposed. Full backend automation first; then a human-in-the-loop review layer on Retool; then a migration into our own intranet once low-code turned into a fixed-size box that could not absorb the requests coming in; then an end-to-end pass over back and front --- events, caching, vectorised scoring --- once building the contract engine taught me where the remaining time was hiding. Analyst time went 90 minutes to 15 to 10 to 4 on the happy path, 7 on a normal one. The engine sustains 1,100 automated evaluations a day and 100 human reviews per evaluator; an automated run is 3 minutes, 90 seconds of which belongs to a third-party data provider.}
 
 \projectcard%
   {Business Client Evaluator}%
   {-90\% cycle time}%
   {Commercial · Origination}%
-  {Origination sat on every prospect for 30 minutes of manual screening --- good leads went cold in the queue while unfit ones ate the same half-hour before they could be discarded.}%
-  {Full backend rewrite: new data model, leaner queries and asynchronous scoring. Evaluation cycle dropped from 30 minutes to 3, letting the team act on signal instead of grinding through noise.}
+  {Origination sat on every prospect for 30 minutes of manual screening --- good leads went cold in the queue while unfit ones ate the same half-hour before they could be discarded. The brief was one sentence: get it under 10 minutes.}%
+  {I traced the commercial call flow first to find which data actually gated a decision, because the naive answer --- pre-warm everything --- breaks on the leads that reach the stage with fields missing. Full backend rewrite around that finding: new data model, leaner queries, asynchronous scoring. The cycle dropped from 30 minutes to 3, and the service has since absorbed a 1,500-evaluation day against a normal load of 170 without failing --- if the top of the funnel widens, the engine is already there.}
 
 \projectcard%
   {Contract Automation Engine}%
-  {}%
-  {Legal · Product}%
-  {Every contract was hand-crafted from manual templates riddled with typo-prone patterns and incomplete variable slots. The team burned hours per deal, lost traceability between versions, and shipped errors that slipped past review.}%
-  {Rebuilt the templates from scratch to remove error-prone variable patterns, then wired a generation-and-review pipeline that pulls each business opportunity's data automatically --- every contract is now versioned, validated, and auditable end-to-end.}
+  {-90\% review errors}%
+  {Legal · Commercial · Operations}%
+  {Contract review was the bottleneck the whole business ran through: three separate teams all sent requests, and every contract was hand-crafted from templates riddled with typo-prone patterns and half-filled variable slots. An earlier ``automation'' had only put the data on one low-code page --- no generation, no validation, and covering part of the flow --- and was painful enough to work on that even small fixes stalled. Nobody owned it. I made the case for the urgency, got no takers, and picked it up.}%
+  {Audited the business process and the data flow before writing anything, then built the real automation from scratch as the sole engineer. Every template rebuilt around typed placeholders, with a validation layer in front of generation so an incomplete or inconsistent contract is refused at the boundary rather than caught at a lawyer's desk. It now issues 100\% of the company's contracts --- versioned, validated, auditable --- with review errors down 90\% and request-to-approval turnaround down 40\%. Load-tested in one hour to roughly fifteen times a normal day's volume, bounded by the document provider's rate limit rather than by the pipeline: sized for two orders of magnitude of growth, not for today. Stable enough since launch to sit in maintenance, owned by one engineer.}
 
 \projectcard%
   {Live Attack Defense}%
   {100\% repelled}%
   {Engineering · Leadership}%
   {A bot slipped in a crafted request that revealed our full API surface; within minutes, attacks flooded the billing and reporting endpoints --- the kind of hit that moves real money.}%
-  {Caught the attack live through the observability I had designed, shipped endpoint-level defenses on the targeted routes before they could execute, and hardened the backend into a posture that has repelled every subsequent attempt as attack volume has grown.}
+  {Months earlier, in my seventh month, I had added a deliberately small detector: raise on error, then sort into two heuristic buckets --- HTTP exceptions carrying known attack signatures, and sources accumulating failed requests. It was not a rich feature, and it did not need to be; it is what caught the attack live. I shipped endpoint-level defenses on the targeted routes before they could execute and hardened the backend into a posture that has repelled every subsequent attempt as attack volume has grown.}
 
 \cvitem{\textbf{Public Repositories}}{%
   \href{https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Back}{\faGithub\ Fullstack Spring/Angular App}%

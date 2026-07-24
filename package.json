@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Personal portfolio of Pedro Luis Lobato Barros — Software Engineer (SRE & Core Logic Lead).",
+  "description": "Personal portfolio of Pedro Luis Lobato Barros — Software Engineer (Core Logic Lead).",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

@@ -41,6 +41,29 @@ const { el, isVisible } = useReveal()
             {{ t(profile.philosophy) }}
           </figcaption>
         </figure>
+
+        <!-- Durability: the post-launch half of the story, which the metrics above don't show. -->
+        <div
+          class="mt-12 rounded-xl border border-slate-200 bg-white/70 p-6 text-left backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/60 sm:p-8"
+        >
+          <h3
+            class="font-mono text-[11px] uppercase tracking-wider text-accent dark:text-accent-soft"
+          >
+            {{ t(profile.durability.heading) }}
+          </h3>
+          <ul class="mt-4 grid gap-4 sm:grid-cols-3">
+            <li
+              v-for="(item, i) in profile.durability.items"
+              :key="i"
+              class="border-l-2 border-slate-200 pl-4 text-sm leading-relaxed text-slate-600 dark:border-slate-700 dark:text-slate-300"
+            >
+              {{ t(item) }}
+            </li>
+          </ul>
+          <p class="mt-5 text-sm font-medium text-slate-800 dark:text-slate-100">
+            {{ t(profile.durability.note) }}
+          </p>
+        </div>
       </div>
     </div>
   </section>

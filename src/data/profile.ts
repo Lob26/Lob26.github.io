@@ -27,6 +27,13 @@ export interface LanguageEntry {
   detail: BilingualText
 }
 
+/** The post-launch story: what the systems do once I stop touching them. */
+export interface Durability {
+  heading: BilingualText
+  items: BilingualText[]
+  note: BilingualText
+}
+
 export interface Profile {
   name: string
   title: BilingualText
@@ -41,6 +48,7 @@ export interface Profile {
   languages: LanguageEntry[]
   philosophy: BilingualText
   philosophyQuote: BilingualText
+  durability: Durability
 }
 
 export interface ExperienceHighlight {
@@ -95,8 +103,8 @@ export const profile: Profile = {
     es: 'Ingeniero de Software',
   },
   subtitle: {
-    en: 'SRE & Core Logic Lead',
-    es: 'Líder de SRE y Lógica Central',
+    en: 'Core Logic Lead · Production Ownership',
+    es: 'Líder de Lógica Central · Responsable en producción',
   },
   location: {
     en: 'Bogotá D.C., Colombia · Remote-first · EN / ES',
@@ -108,14 +116,16 @@ export const profile: Profile = {
   },
   bio: {
     en:
-      'Software engineer with nearly two years in high-growth Fintech and Proptech. ' +
-      'Track record of cutting operational wait times by up to 90%, defending production under live attack, ' +
-      'and bridging backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). ' +
+      'Owner of the three engines a high-growth Fintech × Proptech business runs on — property valuation, client screening and contract generation — ' +
+      'and of how they behave in production. Cut operational wait times by up to 96%, caught and repelled a live attack on production, ' +
+      'and bridged backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). ' +
+      'Sole engineer on every core engine I have built: I grow by taking on harder systems, not larger teams. ' +
       'Fluent across English and Spanish with Legal, Commercial and Operations.',
     es:
-      'Ingeniero de software con casi dos años en entornos Fintech y Proptech de alto crecimiento. ' +
-      'Historial comprobado reduciendo tiempos operativos hasta en un 90 %, defendiendo producción bajo ataque en vivo, ' +
-      'y conectando sistemas backend (Python, Go, Ruby) con ecosistemas CRM (Salesforce). ' +
+      'Responsable de los tres motores sobre los que opera una empresa Fintech × Proptech de alto crecimiento —valoración de inmuebles, evaluación de clientes y generación de contratos— ' +
+      'y de cómo se comportan en producción. Reduje tiempos operativos hasta en un 96 %, detecté y repelí un ataque en vivo sobre producción, ' +
+      'y conecté sistemas backend (Python, Go, Ruby) con ecosistemas CRM (Salesforce). ' +
+      'Único ingeniero en cada motor central que he construido: crezco asumiendo sistemas más difíciles, no equipos más grandes. ' +
       'Fluidez entre inglés y español con Legal, Comercial y Operaciones.',
   },
   links: {
@@ -177,14 +187,38 @@ export const profile: Profile = {
     en: 'I build bridges between data-driven systems and human-centric needs.',
     es: 'Construyo puentes entre sistemas guiados por datos y necesidades humanas.',
   },
+  durability: {
+    heading: {
+      en: 'Systems that stopped needing me',
+      es: 'Sistemas que dejaron de necesitarme',
+    },
+    items: [
+      {
+        en: 'Credentialing code still running with minimal maintenance two years after launch.',
+        es: 'Código de credenciales que sigue corriendo con mantenimiento mínimo dos años después del lanzamiento.',
+      },
+      {
+        en: 'A contract engine issuing every contract the company signs, while sitting in maintenance.',
+        es: 'Un motor que emite todos los contratos que firma la compañía, mientras está en mantenimiento.',
+      },
+      {
+        en: 'A backend posture that has held as attack volume grew.',
+        es: 'Una postura de backend que ha aguantado mientras crecía el volumen de ataques.',
+      },
+    ],
+    note: {
+      en: 'I measure the work by what it does after I stop touching it.',
+      es: 'Mido el trabajo por lo que hace después de que dejo de tocarlo.',
+    },
+  },
 }
 
 export const experience: ExperienceEntry[] = [
   {
     company: 'Duppla',
     role: {
-      en: 'Software Engineer — SRE & Core Logic Lead',
-      es: 'Ingeniero de Software — Líder de SRE y Lógica Central',
+      en: 'Software Engineer — Core Logic Lead',
+      es: 'Ingeniero de Software — Líder de Lógica Central',
     },
     seniority: {
       en: 'Technical ownership · Cross-functional lead',
@@ -201,10 +235,10 @@ export const experience: ExperienceEntry[] = [
     },
     summary: {
       en:
-        'I own the core business engines and the reliability practice, and I sit as a translator between engineering and the commercial, legal and operations teams. ' +
+        'Translator between engineering and the commercial, legal and operations teams — and the engineer who then builds what the conversation agreed on. ' +
         'My weeks move between code, architecture decisions, and the conversations that make those decisions land.',
       es:
-        'Soy responsable de los motores centrales de negocio y de la práctica de confiabilidad, y actúo como traductor entre ingeniería y los equipos comercial, legal y de operaciones. ' +
+        'Traductor entre ingeniería y los equipos comercial, legal y de operaciones —y el ingeniero que después construye lo que se acordó en esa conversación. ' +
         'Mis semanas se mueven entre código, decisiones de arquitectura y las conversaciones que hacen que esas decisiones aterricen.',
     },
     highlights: [
@@ -213,13 +247,13 @@ export const experience: ExperienceEntry[] = [
           en: 'Core Product Ownership',
           es: 'Propiedad del producto central',
         },
-        metric: '83%',
+        metric: '96%',
         stakeholders: { en: 'Commercial · Operations', es: 'Comercial · Operaciones' },
         detail: {
           en:
-            'Partnered with the Operations and Commercial teams to redesign the Real Estate Evaluator — cutting their 90-minute wait down to 15. That 83% gave analysts back most of an afternoon to talk to clients instead of refreshing a screen.',
+            'Rebuilt the Real Estate Evaluator over four iterations: full backend automation, then a human-in-the-loop review layer, then a migration off Retool once low-code became the constraint rather than the shortcut, then an end-to-end pass over back and front. Analyst time per property went 90 minutes to 15 to 10 to 4 on the happy path. The engine sustains 1,100 automated evaluations a day, and the 3 minutes an automated run still takes is 90 seconds of a third-party data provider, not our code.',
           es:
-            'En equipo con Operaciones y Comercial rediseñé el Evaluador Inmobiliario: de 90 a 15 minutos por evaluación. Ese 83 % le devolvió a los analistas casi toda una tarde para hablar con clientes, no para mirar una pantalla cargando.',
+            'Reconstruí el Evaluador Inmobiliario en cuatro iteraciones: primero la automatización completa del backend, después una capa de revisión con humano en el ciclo, después la migración fuera de Retool cuando el low-code pasó de atajo a restricción, y finalmente una pasada de punta a punta sobre back y front. El tiempo del analista por inmueble pasó de 90 minutos a 15, a 10 y a 4 en el camino feliz. El motor sostiene 1.100 evaluaciones automáticas al día, y de los 3 minutos que aún tarda una corrida automática, 90 segundos son de un proveedor de datos externo, no de nuestro código.',
         },
       },
       {
@@ -231,9 +265,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'Engineering · Leadership', es: 'Ingeniería · Dirección' },
         detail: {
           en:
-            'A bot slipped in a crafted request that exposed our full API surface and attacks on billing and reporting endpoints followed within minutes. I caught it live through the observability I had designed, shipped defenses on the targeted routes in real time, and hardened the backend into a posture that has since repelled 100% of subsequent attempts — attack volume has kept growing, the success rate has stayed at zero.',
+            'Months before it mattered I had added a deliberately small detector — two heuristic buckets: HTTP exceptions carrying known attack signatures, and sources accumulating failed requests. When a bot exposed our full API surface and attacks hit billing and reporting within minutes, that cheap signal is what caught it live. I shipped endpoint-level defenses in real time and hardened the backend into a posture that has since repelled 100% of subsequent attempts — attack volume has kept growing, the success rate has stayed at zero.',
           es:
-            'Un bot coló una petición que reveló toda nuestra superficie de API y, en minutos, empezaron los ataques contra los endpoints de cobranza y reportes. Lo detecté en vivo gracias al sistema de observabilidad que yo había diseñado, desplegué defensas sobre los endpoints comprometidos en tiempo real, y endurecí el backend en una postura que ha repelido el 100 % de los intentos posteriores: el volumen de ataques sigue subiendo, la tasa de éxito sigue en cero.',
+            'Meses antes de que importara había agregado un detector deliberadamente pequeño: dos buckets heurísticos —excepciones HTTP con firmas de ataque conocidas, y orígenes que acumulan peticiones fallidas. Cuando un bot expuso toda nuestra superficie de API y en minutos empezaron los ataques contra cobranza y reportes, esa señal barata fue la que lo detectó en vivo. Desplegué defensas a nivel de endpoint en tiempo real y endurecí el backend en una postura que desde entonces ha repelido el 100 % de los intentos posteriores: el volumen sigue subiendo, la tasa de éxito sigue en cero.',
         },
       },
       {
@@ -241,39 +275,56 @@ export const experience: ExperienceEntry[] = [
           en: 'Contract Automation',
           es: 'Automatización de contratos',
         },
-        stakeholders: { en: 'Legal · Product', es: 'Legal · Producto' },
+        metric: '90%',
+        stakeholders: {
+          en: 'Legal · Commercial · Operations',
+          es: 'Legal · Comercial · Operaciones',
+        },
         detail: {
           en:
-            'Leading a contract generation engine co-designed with Legal, removing the manual drafting that used to gate every new deal during Series A prep.',
+            'Sole designer and owner of the contract generation engine — unowned work I picked up after making the case for it — now the only path through which the company issues contracts. I modelled the legal document as validated data instead of a text template: typed placeholders and validation rules refuse an incomplete contract before it reaches a lawyer. Review errors down 90%, request-to-approval turnaround down 40%. Load-tested to roughly fifteen times current daily volume in a single hour, where the ceiling is the document provider\'s rate limit rather than the pipeline — sized for two orders of magnitude of growth, not for today.',
           es:
-            'Lidero un motor de generación de contratos co-diseñado con Legal, retirando el borrado manual que bloqueaba cada nuevo negocio durante la preparación de Serie A.',
+            'Diseñé y soy el único responsable del motor de generación de contratos —trabajo sin dueño que asumí después de argumentar su urgencia— y hoy es la única vía por la que la compañía emite contratos. Modelé el documento legal como datos validados en vez de una plantilla de texto: los placeholders tipados y las reglas de validación rechazan un contrato incompleto antes de que llegue a un abogado. 90 % menos errores de revisión y 40 % menos tiempo entre solicitud y aprobación. Probado bajo carga a unas quince veces el volumen diario actual en una sola hora, donde el techo es el límite de peticiones del proveedor del documento y no el pipeline: dimensionado para dos órdenes de magnitud de crecimiento, no para hoy.',
         },
       },
       {
         label: {
-          en: 'Salesforce Integration',
-          es: 'Integración con Salesforce',
+          en: 'Salesforce Bridge',
+          es: 'Puente con Salesforce',
         },
         stakeholders: { en: 'Commercial · RevOps', es: 'Comercial · RevOps' },
         detail: {
           en:
-            'Acted as bridge engineer between backend services and the commercial platform, stabilising CRM data and giving the revenue team a source of truth they could act on.',
+            'Not a Salesforce engineer — the engineer on the other side of the seam. I know the org\'s data model, SOQL/SOSL, Apex and the REST surface well enough to be the one proposing the schema and optimisation changes, and I contribute the integration side: data cleansing, shared utilities, and keeping CRM records consistent enough for the revenue team to trust them.',
           es:
-            'Actué como ingeniero puente entre los servicios backend y la plataforma comercial, estabilizando los datos del CRM y dándole al equipo de ingresos una fuente de verdad accionable.',
+            'No soy ingeniero de Salesforce: soy el ingeniero del otro lado de la costura. Conozco el modelo de datos de la org, SOQL/SOSL, Apex y la superficie REST lo suficiente como para ser quien propone los cambios de esquema y de optimización, y aporto el lado de la integración: limpieza de datos, utilidades compartidas y mantener los registros del CRM lo bastante consistentes como para que el equipo de ingresos confíe en ellos.',
         },
       },
       {
         label: {
-          en: 'Developer Experience',
-          es: 'Experiencia de desarrollo',
+          en: 'Engineering Leverage',
+          es: 'Palanca de ingeniería',
         },
         metric: '30%',
         stakeholders: { en: 'Engineering', es: 'Ingeniería' },
         detail: {
           en:
-            'Built AWS and Slack wrappers that standardised internal tooling and shaved 30% of technical debt — so the next engineer spends their first day shipping, not decoding.',
+            'Built AWS and Slack wrappers now used by the whole team — four engineers, every backend — so nobody hand-rolls a client per service. 30% of technical debt gone, and the next engineer spends their first day shipping rather than decoding. The front-end architecture I designed for contract generation became the pattern the evaluator rebuild was based on, and I audit code I do not own and take the reliability defects I find there.',
           es:
-            'Construí wrappers de AWS y Slack que estandarizaron el tooling interno y retiraron un 30 % de deuda técnica, para que el siguiente ingeniero dedique su primer día a entregar, no a descifrar.',
+            'Construí wrappers de AWS y Slack que hoy usa todo el equipo —cuatro ingenieros, todos los backends— para que nadie arme un cliente por servicio. 30 % de deuda técnica menos, y el siguiente ingeniero dedica su primer día a entregar, no a descifrar. La arquitectura de front que diseñé para la generación de contratos se convirtió en el patrón sobre el que se reconstruyó el evaluador, y audito código que no es mío y me hago cargo de los defectos de confiabilidad que encuentro ahí.',
+        },
+      },
+      {
+        label: {
+          en: 'Technical Foresight',
+          es: 'Anticipación técnica',
+        },
+        stakeholders: { en: 'Engineering · Leadership', es: 'Ingeniería · Dirección' },
+        detail: {
+          en:
+            'When AI-generated internal front-ends started appearing, I argued at the third one that the pattern outruns ownership faster than anyone expects, and that the cost arrives later as risk nobody has scoped. The trajectory played out on the timeline I described. I also made the case that a design guide alone cannot steer generated code — without machine-readable context an agent builds a generic product, not yours. I raise this class of problem before it becomes a ticket.',
+          es:
+            'Cuando empezaron a aparecer fronts internos generados con IA, argumenté en el tercero que el patrón le gana a la propiedad más rápido de lo que cualquiera espera, y que el costo llega después como riesgo que nadie ha dimensionado. La trayectoria se dio en el plazo que describí. También sostuve que una guía de diseño no alcanza para dirigir código generado: sin contexto legible por máquina, un agente construye un producto genérico, no el tuyo. Levanto esta clase de problema antes de que se convierta en un ticket.',
         },
       },
     ],
@@ -313,9 +364,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'Legal · Risk · Origination', es: 'Legal · Riesgo · Originación' },
         detail: {
           en:
-            'Rebuilt the Client Evaluator backend in conversation with Legal, Risk and Origination — 30 minutes of manual work collapsed into 3. Ninety percent of the queue time went back to the people who actually weigh the hard cases.',
+            'Given one line of direction — "get this under 10 minutes" — I traced the commercial call flow to find which data actually gated a decision, then rebuilt the Client Evaluator backend around it instead of pre-warming everything. Thirty minutes of manual work collapsed into 3, and the service has since absorbed a 1,500-evaluation day against a normal load of 170 without failing.',
           es:
-            'Reescribí el backend del Evaluador de Clientes conversando con Legal, Riesgo y Originación: 30 minutos de trabajo manual se convirtieron en 3. El 90 % del tiempo en cola volvió a las personas que realmente sopesan los casos difíciles.',
+            'Con una sola línea de dirección —«baja esto de 10 minutos»— rastreé el flujo de llamadas comerciales para encontrar qué datos realmente condicionaban la decisión, y reconstruí el backend del Evaluador de Clientes alrededor de eso en vez de pre-cargar todo. Treinta minutos de trabajo manual se convirtieron en 3, y desde entonces el servicio absorbió un día de 1.500 evaluaciones contra una carga normal de 170 sin fallar.',
         },
       },
       {
@@ -360,22 +411,22 @@ export const projects: Project[] = [
     },
     humanProblem: {
       en:
-        'Commercial analysts waited 90 minutes for each property evaluation — long enough for a client to cool off and a negotiation to stall.',
+        'Commercial analysts waited 90 minutes for each property evaluation — long enough for a client to cool off and a negotiation to stall. I noticed the wait, asked about it, and was invited onto the project.',
       es:
-        'Los analistas comerciales esperaban 90 minutos por cada evaluación de inmueble: suficiente para que un cliente se enfriara y una negociación se frenara.',
+        'Los analistas comerciales esperaban 90 minutos por cada evaluación de inmueble: suficiente para que un cliente se enfriara y una negociación se frenara. Noté la espera, pregunté por ella y me invitaron al proyecto.',
     },
     technicalSolution: {
       en:
-        'Migrated the engine out of Retool into a custom intranet, tightened the pricing logic and automated the upstream data flows so analysts see a result in 15 minutes.',
+        'Four iterations, each answering the constraint the last one exposed. Full backend automation first; then a human-in-the-loop review layer on Retool; then a migration into our own intranet once low-code turned into a fixed-size box that could not absorb the requests coming in; then an end-to-end pass over back and front — events, caching, vectorised scoring — once building the contract engine taught me where the remaining time was hiding. Analyst time went 90 minutes to 15 to 10 to 4 on the happy path, 7 on a normal one. The engine sustains 1,100 automated evaluations a day and 100 human reviews per evaluator; an automated run is 3 minutes, 90 seconds of which belongs to a third-party data provider.',
       es:
-        'Migré el motor desde Retool a una intranet propia, ajusté la lógica de valoración y automaticé los flujos de datos aguas arriba para que el analista reciba el resultado en 15 minutos.',
+        'Cuatro iteraciones, cada una respondiendo a la restricción que reveló la anterior. Primero la automatización completa del backend; después una capa de revisión con humano en el ciclo sobre Retool; después la migración a nuestra propia intranet cuando el low-code se volvió una caja de tamaño fijo incapaz de absorber los requerimientos que llegaban; y finalmente una pasada de punta a punta sobre back y front —eventos, caché, scoring vectorizado— cuando construir el motor de contratos me enseñó dónde se escondía el tiempo restante. El tiempo del analista pasó de 90 minutos a 15, a 10 y a 4 en el camino feliz, 7 en uno normal. El motor sostiene 1.100 evaluaciones automáticas al día y 100 revisiones humanas por evaluador; una corrida automática toma 3 minutos, de los cuales 90 segundos son de un proveedor de datos externo.',
     },
     stakeholders: { en: 'Commercial · Operations', es: 'Comercial · Operaciones' },
     metric: {
-      value: '83%',
+      value: '96%',
       label: {
-        en: 'less waiting per evaluation (90 → 15 min)',
-        es: 'menos espera por evaluación (90 → 15 min)',
+        en: 'less analyst time (90 → 4 min) · 1,100 automated evaluations/day',
+        es: 'menos tiempo del analista (90 → 4 min) · 1.100 evaluaciones automáticas/día',
       },
     },
     tags: ['Python', 'Internal Tooling', 'Proptech'],
@@ -392,22 +443,22 @@ export const projects: Project[] = [
     },
     humanProblem: {
       en:
-        'Origination sat on every prospect for 30 minutes of manual screening. Good leads went cold in the queue while unfit ones still ate the same half-hour before they could be discarded.',
+        'Origination sat on every prospect for 30 minutes of manual screening. Good leads went cold in the queue while unfit ones still ate the same half-hour before they could be discarded. The brief was one sentence: get it under 10 minutes.',
       es:
-        'Originación se quedaba media hora con cada prospecto haciendo filtros manuales. Los buenos leads se enfriaban en la cola y los que no calificaban consumían el mismo tiempo antes de poder descartarse.',
+        'Originación se quedaba media hora con cada prospecto haciendo filtros manuales. Los buenos leads se enfriaban en la cola y los que no calificaban consumían el mismo tiempo antes de poder descartarse. El encargo fue una sola frase: bájalo de 10 minutos.',
     },
     technicalSolution: {
       en:
-        'Full backend rewrite — new data model, leaner queries and asynchronous scoring. The evaluation cycle dropped from 30 minutes to 3, freeing the team to act on signal instead of grinding through noise.',
+        'I traced the commercial call flow first to find which data actually gated a decision, because the naive answer — pre-warm everything — breaks on the leads that reach the stage with fields missing. Full backend rewrite around that finding: new data model, leaner queries, asynchronous scoring. The cycle dropped from 30 minutes to 3, and the service has since absorbed a 1,500-evaluation day against a normal load of 170 without failing — if the top of the funnel widens, the engine is already there.',
       es:
-        'Reescritura completa del backend: nuevo modelo de datos, consultas más livianas y scoring asíncrono. El ciclo de evaluación cayó de 30 a 3 minutos y el equipo pasó a actuar sobre señal, no sobre ruido.',
+        'Primero rastreé el flujo de llamadas comerciales para encontrar qué datos condicionaban realmente la decisión, porque la respuesta ingenua —pre-cargar todo— se rompe con los leads que llegan a esa etapa con campos faltantes. Reescritura completa del backend alrededor de ese hallazgo: nuevo modelo de datos, consultas más livianas y scoring asíncrono. El ciclo cayó de 30 a 3 minutos, y desde entonces el servicio absorbió un día de 1.500 evaluaciones contra una carga normal de 170 sin fallar: si la boca del embudo se ensancha, el motor ya está listo.',
     },
     stakeholders: { en: 'Commercial · Origination', es: 'Comercial · Originación' },
     metric: {
       value: '90%',
       label: {
-        en: 'faster cycle — time returned to the team (30 → 3 min)',
-        es: 'más rápido: tiempo devuelto al equipo (30 → 3 min)',
+        en: 'faster cycle (30 → 3 min) · 1,500 evaluations absorbed in a day',
+        es: 'más rápido (30 → 3 min) · 1.500 evaluaciones absorbidas en un día',
       },
     },
     tags: ['Python', 'Backend', 'Performance'],
@@ -419,23 +470,33 @@ export const projects: Project[] = [
       es: 'Motor de Automatización de Contratos',
     },
     description: {
-      en: 'Template refresh plus a generation-and-review pipeline that removes typos, drift and lost versions from the legal flow.',
-      es: 'Renovación de plantillas más un pipeline de generación y revisión que elimina typos, inconsistencias y versiones perdidas del flujo legal.',
+      en: 'The single system of record for every contract the company issues — designed, built and deployed end-to-end as the sole engineer.',
+      es: 'El sistema único por el que la compañía emite todos sus contratos: diseñado, construido y desplegado de punta a punta como único ingeniero.',
     },
     humanProblem: {
       en:
-        'Every contract was hand-crafted from manual templates riddled with typo-prone patterns and half-filled variable slots. The team burned hours per deal, lost traceability between versions, and shipped errors that slipped past review.',
+        'Contract review was the bottleneck the whole business ran through: three separate teams all sent requests, and every contract was hand-crafted from templates riddled with typo-prone patterns and half-filled variable slots. An earlier "automation" had only put the data on one low-code page — no generation, no validation, and covering part of the flow — and was painful enough to work on that even small fixes stalled. Nobody owned it. I made the case for the urgency, got no takers, and picked it up.',
       es:
-        'Cada contrato salía a mano desde plantillas manuales plagadas de patrones propensos a erratas y variables a medio llenar. El equipo perdía horas por operación, se quedaba sin trazabilidad entre versiones y dejaba pasar errores que ni la revisión detectaba.',
+        'La revisión de contratos era el cuello de botella por el que pasaba todo el negocio: tres equipos distintos enviaban solicitudes, y cada contrato salía a mano desde plantillas plagadas de patrones propensos a erratas y variables a medio llenar. Un intento previo de «automatización» solo había puesto los datos en una página low-code —sin generación, sin validación y cubriendo apenas parte del flujo— y era tan doloroso de trabajar que hasta los arreglos pequeños se frenaban. Nadie era dueño de eso. Argumenté la urgencia, no hubo voluntarios, y lo asumí.',
     },
     technicalSolution: {
       en:
-        'Rebuilt the templates from scratch to remove error-prone variable patterns, then wired a generation-and-review pipeline that pulls each business opportunity\'s data automatically — every contract is now versioned, validated, and auditable end-to-end.',
+        'Audited the business process and the data flow before writing anything, then built the real automation from scratch as the sole engineer. Every template rebuilt around typed placeholders, with a validation layer in front of generation so an incomplete or inconsistent contract is refused at the boundary rather than caught at a lawyer\'s desk. It now issues 100% of the company\'s contracts — versioned, validated, auditable — with review errors down 90% and request-to-approval turnaround down 40%. Load-tested in one hour to roughly fifteen times a normal day\'s volume, bounded by the document provider\'s rate limit rather than by the pipeline: sized for two orders of magnitude of growth, not for today. Stable enough since launch to sit in maintenance, owned by one engineer.',
       es:
-        'Reconstruí las plantillas desde cero para eliminar los patrones de variables propensos a error y conecté un pipeline de generación y revisión que extrae los datos de cada oportunidad de negocio automáticamente: cada contrato queda versionado, validado y auditable de extremo a extremo.',
+        'Audité el proceso de negocio y el flujo de datos antes de escribir una línea, y construí la automatización real desde cero como único ingeniero. Cada plantilla reconstruida alrededor de placeholders tipados, con una capa de validación delante de la generación para que un contrato incompleto o inconsistente se rechace en la frontera y no se descubra en el escritorio de un abogado. Hoy emite el 100 % de los contratos de la compañía —versionados, validados y auditables— con 90 % menos errores de revisión y 40 % menos tiempo entre solicitud y aprobación. Probado bajo carga en una hora a unas quince veces el volumen de un día normal, limitado por el rate limit del proveedor del documento y no por el pipeline: dimensionado para dos órdenes de magnitud de crecimiento, no para hoy. Lo bastante estable desde el lanzamiento para estar en mantenimiento, a cargo de un solo ingeniero.',
     },
-    stakeholders: { en: 'Legal · Product', es: 'Legal · Producto' },
-    tags: ['Automation', 'DX', 'Legal-Tech'],
+    stakeholders: {
+      en: 'Legal · Commercial · Operations',
+      es: 'Legal · Comercial · Operaciones',
+    },
+    metric: {
+      value: '90%',
+      label: {
+        en: 'fewer review errors · 40% faster request-to-approval · 100% of contracts',
+        es: 'menos errores de revisión · 40 % más rápido de solicitud a aprobación · 100 % de los contratos',
+      },
+    },
+    tags: ['Automation', 'Data Modeling', 'Legal-Tech'],
     link: null,
   },
   {
@@ -444,8 +505,8 @@ export const projects: Project[] = [
       es: 'Defensa en Vivo ante Ataques',
     },
     description: {
-      en: 'Detected a live API-exposure attack through the observability I had designed, then defended and hardened the backend end-to-end.',
-      es: 'Detecté en vivo un ataque que expuso la superficie de la API gracias a la observabilidad que yo había diseñado, y después defendí y endurecí el backend de extremo a extremo.',
+      en: 'A cheap detector built months before it mattered caught a live API-exposure attack; I defended and hardened the backend end-to-end.',
+      es: 'Un detector barato construido meses antes de que importara atrapó en vivo un ataque que expuso la superficie de la API; defendí y endurecí el backend de extremo a extremo.',
     },
     humanProblem: {
       en:
@@ -455,9 +516,9 @@ export const projects: Project[] = [
     },
     technicalSolution: {
       en:
-        'Caught the attack live through the observability I had designed, shipped endpoint-level defenses on the targeted routes before they could execute, and hardened the backend into a posture that has repelled every subsequent attempt as attack volume has grown.',
+        'Months earlier, in my seventh month, I had added a deliberately small detector: raise on error, then sort into two heuristic buckets — HTTP exceptions carrying known attack signatures, and sources accumulating failed requests. It was not a rich feature, and it did not need to be; it is what caught the attack live. I shipped endpoint-level defenses on the targeted routes before they could execute and hardened the backend into a posture that has repelled every subsequent attempt as attack volume has grown.',
       es:
-        'Detecté el ataque en vivo gracias a la observabilidad que yo había diseñado, desplegué defensas a nivel de endpoint sobre las rutas comprometidas antes de que pudieran ejecutarse, y endurecí el backend en una postura que ha repelido cada intento posterior a medida que el volumen de ataques ha crecido.',
+        'Meses antes, en mi séptimo mes, había agregado un detector deliberadamente pequeño: levantar el error y clasificarlo en dos buckets heurísticos —excepciones HTTP con firmas de ataque conocidas, y orígenes que acumulan peticiones fallidas. No era una funcionalidad sofisticada, y no necesitaba serlo: fue lo que detectó el ataque en vivo. Desplegué defensas a nivel de endpoint sobre las rutas comprometidas antes de que pudieran ejecutarse y endurecí el backend en una postura que ha repelido cada intento posterior a medida que el volumen de ataques ha crecido.',
     },
     stakeholders: { en: 'Engineering · Leadership', es: 'Ingeniería · Dirección' },
     metric: {
@@ -525,12 +586,18 @@ export const skills: SkillGroup[] = [
   {
     group: { en: 'Backend & Integrations', es: 'Backend e integraciones' },
     emphasis: 'technical',
-    items: ['Salesforce', 'Slack', 'RabbitMQ', 'REST APIs', 'Custom AWS / Slack wrappers'],
+    items: [
+      'Salesforce (Apex, REST)',
+      'Slack',
+      'RabbitMQ',
+      'REST APIs',
+      'Custom AWS / Slack wrappers',
+    ],
   },
   {
-    group: { en: 'Databases', es: 'Bases de datos' },
+    group: { en: 'Databases & Data', es: 'Bases de datos y datos' },
     emphasis: 'technical',
-    items: ['PostgreSQL', 'MySQL'],
+    items: ['PostgreSQL', 'BigQuery', 'SOQL / SOSL'],
   },
   {
     group: { en: 'DevOps & Cloud', es: 'DevOps y Nube' },
