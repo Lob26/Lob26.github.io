@@ -74,7 +74,7 @@ const supportingProjects = computed(() =>
             </div>
             <div
               v-if="p.metric"
-              class="shrink-0 rounded-lg bg-accent/10 px-3 py-2 text-right dark:bg-accent/15"
+              class="w-28 shrink-0 rounded-lg bg-accent/10 px-3 py-2 text-right dark:bg-accent/15"
             >
               <p class="font-mono text-2xl font-semibold tabular-nums leading-none text-accent dark:text-accent-soft">
                 {{ p.metric.value }}

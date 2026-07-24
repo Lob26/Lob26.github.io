@@ -425,8 +425,8 @@ export const projects: Project[] = [
     metric: {
       value: '96%',
       label: {
-        en: 'less analyst time (90 → 4 min) · 1,100 automated evaluations/day',
-        es: 'menos tiempo del analista (90 → 4 min) · 1.100 evaluaciones automáticas/día',
+        en: 'less analyst time · 90 → 4 min',
+        es: 'menos tiempo del analista · 90 → 4 min',
       },
     },
     tags: ['Python', 'Internal Tooling', 'Proptech'],
@@ -457,8 +457,8 @@ export const projects: Project[] = [
     metric: {
       value: '90%',
       label: {
-        en: 'faster cycle (30 → 3 min) · 1,500 evaluations absorbed in a day',
-        es: 'más rápido (30 → 3 min) · 1.500 evaluaciones absorbidas en un día',
+        en: 'faster cycle · 30 → 3 min',
+        es: 'más rápido · 30 → 3 min',
       },
     },
     tags: ['Python', 'Backend', 'Performance'],
@@ -492,8 +492,8 @@ export const projects: Project[] = [
     metric: {
       value: '90%',
       label: {
-        en: 'fewer review errors · 40% faster request-to-approval · 100% of contracts',
-        es: 'menos errores de revisión · 40 % más rápido de solicitud a aprobación · 100 % de los contratos',
+        en: 'fewer review errors',
+        es: 'menos errores de revisión',
       },
     },
     tags: ['Automation', 'Data Modeling', 'Legal-Tech'],
