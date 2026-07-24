@@ -7,7 +7,8 @@
 % Disable microtype font expansion (moderncv loads microtype; fontawesome5's
 % bitmap shapes are not scalable, so auto-expansion crashes pdflatex).
 \microtypesetup{expansion=false}
-\usepackage{fontawesome5}
+% moderncv loads fontawesome5 itself in current TeX Live; loading it again here
+% redefines \l_fontawesome_style_str and aborts the build. Rely on the class.
 \usepackage{xcolor}
 \usepackage{multicol}
 \usepackage{etoolbox}
