@@ -37,10 +37,11 @@ const supportingProjects = computed(() =>
         </h2>
       </header>
 
-      <!-- Impact cards: problem / solution two-pane, metric ribbon. -->
+      <!-- Impact cards: full-width, so the problem/solution two-pane gets real
+           reading width and unequal card lengths never stretch a neighbour. -->
       <div
         :class="[
-          'reveal-stagger grid gap-6 lg:grid-cols-2',
+          'reveal-stagger flex flex-col gap-6',
           { 'is-visible': isVisible },
         ]"
       >
