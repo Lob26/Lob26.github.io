@@ -24,9 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-.claude/
-!.claude/settings.json
-
 # LaTeX build artefacts (CV) — only the cv/*.tex sources and the rendered
 # public/Pedro_Lobato_CV_*.pdf files are tracked.
 cv/*.aux
