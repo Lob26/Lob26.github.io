@@ -27,7 +27,8 @@ pnpm-debug.log*
 .claude/
 !.claude/settings.json
 
-# LaTeX build artefacts (CV) — only cv/main.tex and public/Pedro_Lobato_CV.pdf are tracked.
+# LaTeX build artefacts (CV) — only the cv/*.tex sources and the rendered
+# public/Pedro_Lobato_CV_*.pdf files are tracked.
 cv/*.aux
 cv/*.fdb_latexmk
 cv/*.fls
@@ -37,4 +38,9 @@ cv/*.synctex.gz
 cv/*.toc
 cv/*.bbl
 cv/*.blg
-cv/main.pdf
+cv/*.pdf
+cv/*.png
+cv/*.txt
+
+# CodeGraph local index — machine-specific, never shared.
+.codegraph/
