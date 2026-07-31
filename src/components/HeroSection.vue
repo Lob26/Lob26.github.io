@@ -38,9 +38,46 @@ onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true })
 })
 
+// --- CV format menu ---------------------------------------------------------
+// Two layouts of the same CV. A plain Vue menu rather than a component library:
+// the only runtime dependency here is Vue itself, and pulling in a UI kit for a
+// single dropdown would outweigh the whole bundle.
+const resumeMenuOpen = ref(false)
+const resumeMenuEl = ref<HTMLElement | null>(null)
+
+function toggleResumeMenu(): void {
+  resumeMenuOpen.value = !resumeMenuOpen.value
+}
+
+function closeResumeMenu(): void {
+  resumeMenuOpen.value = false
+}
+
+function onDocumentPointerDown(event: PointerEvent): void {
+  if (!resumeMenuOpen.value) return
+  const target = event.target as Node | null
+  if (target && resumeMenuEl.value && !resumeMenuEl.value.contains(target)) {
+    closeResumeMenu()
+  }
+}
+
+function onDocumentKeydown(event: KeyboardEvent): void {
+  if (event.key === 'Escape') closeResumeMenu()
+}
+
+onMounted(() => {
+  if (typeof document === 'undefined') return
+  document.addEventListener('pointerdown', onDocumentPointerDown)
+  document.addEventListener('keydown', onDocumentKeydown)
+})
+
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', onScroll)
   if (rafId) cancelAnimationFrame(rafId)
+  if (typeof document !== 'undefined') {
+    document.removeEventListener('pointerdown', onDocumentPointerDown)
+    document.removeEventListener('keydown', onDocumentKeydown)
+  }
 })
 </script>
 
@@ -144,14 +181,53 @@ onBeforeUnmount(() => {
             >
               {{ t(ui.hero.github) }}
             </a>
-            <a
-              :href="profile.links.resume"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
-            >
-              {{ t(ui.hero.resume) }}
-            </a>
+            <div ref="resumeMenuEl" class="relative">
+              <button
+                type="button"
+                :aria-expanded="resumeMenuOpen"
+                aria-haspopup="menu"
+                :aria-label="t(ui.hero.resumeMenuLabel)"
+                class="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                @click="toggleResumeMenu"
+              >
+                {{ t(ui.hero.resume) }}
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="h-4 w-4 transition-transform duration-200"
+                  :class="resumeMenuOpen ? 'rotate-180' : ''"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.17l3.71-3.94a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+              <div
+                v-if="resumeMenuOpen"
+                role="menu"
+                :aria-label="t(ui.hero.resumeMenuLabel)"
+                class="absolute left-0 top-full z-20 mt-2 min-w-[15rem] overflow-hidden rounded-md border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-900"
+              >
+                <a
+                  v-for="format in profile.links.resumes"
+                  :key="format.id"
+                  role="menuitem"
+                  :href="format.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-2 text-left text-sm text-slate-700 transition-colors duration-150 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800"
+                  @click="closeResumeMenu"
+                >
+                  <span class="block font-medium">{{ t(ui.hero.resumeFormats[format.id].name) }}</span>
+                  <span class="block text-xs text-slate-500 dark:text-slate-400">
+                    {{ t(ui.hero.resumeFormats[format.id].hint) }}
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

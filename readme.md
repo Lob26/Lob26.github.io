@@ -42,7 +42,12 @@ Every user-facing string is typed as `BilingualText` (`{ en, es }`) so the same 
 
 Edit, save, and the site updates. No component changes required for typical content tweaks.
 
-The CV PDF is served from `public/Pedro_Lobato_CV.pdf` — drop a replacement there to update the resume download.
+The CV ships in two layouts, built from `cv/ivy.tex` (single column) and
+`cv/double-column.tex` (experience plus sidebar). Both carry identical content —
+only the layout differs — so edit them together. Pushing either one triggers
+`build-cv.yml`, which compiles both with latexmk and commits the rendered
+`public/Pedro_Lobato_CV_Ivy.pdf` and `public/Pedro_Lobato_CV_DoubleColumn.pdf`.
+The hero's "Download CV" menu is driven by `profile.links.resumes`.
 
 ## Theme
 
@@ -155,7 +160,8 @@ If you add a custom domain, the workflow still works — `configure-pages` retur
 ├── public/
 │   ├── favicon.svg
 │   ├── avatar.jpg            # written weekly by update-avatar.yml (optional)
-│   └── Pedro_Lobato_CV.pdf
+│   ├── Pedro_Lobato_CV_Ivy.pdf          # built from cv/ivy.tex
+│   └── Pedro_Lobato_CV_DoubleColumn.pdf # built from cv/double-column.tex
 ├── scripts/
 │   └── fetch-linkedin-avatar.mjs
 └── src/

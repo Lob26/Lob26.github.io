@@ -6,12 +6,19 @@ export interface BilingualText {
   es: string
 }
 
+/** One rendered CV format. `id` keys the i18n label in `ui.hero.resumeFormats`. */
+export interface ResumeFormat {
+  id: 'ivy' | 'doubleColumn'
+  href: string
+}
+
 export interface ProfileLinks {
   email: string
   phone: string
   linkedin: string
   github: string
-  resume: string
+  /** Same content, different layout. First entry is the default offered. */
+  resumes: ResumeFormat[]
 }
 
 export interface Pillar {
@@ -133,7 +140,10 @@ export const profile: Profile = {
     phone: '+57 318 507 9105',
     linkedin: 'https://www.linkedin.com/in/lobaton2610',
     github: 'https://github.com/Lob26',
-    resume: './Pedro_Lobato_CV.pdf',
+    resumes: [
+      { id: 'ivy', href: './Pedro_Lobato_CV_Ivy.pdf' },
+      { id: 'doubleColumn', href: './Pedro_Lobato_CV_DoubleColumn.pdf' },
+    ],
   },
   linkedinVanity: 'lobaton2610',
   githubVanity: 'Lob26',
@@ -661,6 +671,17 @@ export const ui = {
     linkedin: { en: 'LinkedIn', es: 'LinkedIn' },
     github: { en: 'GitHub', es: 'GitHub' },
     resume: { en: 'Download CV', es: 'Descargar CV' },
+    resumeMenuLabel: { en: 'Choose a CV format', es: 'Elige un formato de CV' },
+    resumeFormats: {
+      ivy: {
+        name: { en: 'Ivy', es: 'Ivy' },
+        hint: { en: 'Single column', es: 'Una columna' },
+      },
+      doubleColumn: {
+        name: { en: 'Double Column', es: 'Doble columna' },
+        hint: { en: 'Experience with sidebar', es: 'Experiencia con barra lateral' },
+      },
+    },
     portraitAlt: { en: 'Portrait of', es: 'Retrato de' },
   },
   philosophy: {
