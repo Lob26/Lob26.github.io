@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'cv/main.tex'
+      - 'cv/*.tex'
       - '.github/workflows/build-cv.yml'
   pull_request:
     paths:
-      - 'cv/main.tex'
+      - 'cv/*.tex'
   workflow_dispatch:
 
 permissions:
@@ -27,38 +27,52 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Compile LaTeX
+      # Both formats are published so the site can offer a choice. They share
+      # their content verbatim and differ only in layout, so they must always be
+      # rebuilt together -- shipping one stale would make the two disagree.
+      - name: Compile Ivy (single column)
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
+          root_file: ivy.tex
           working_directory: cv
-          compiler: pdflatex
-          args: -interaction=nonstopmode -halt-on-error -file-line-error
+          # latexmk (the action default) drives pdflatex and reruns it until the
+          # cross-references settle. A previous `compiler: pdflatex` ran a single
+          # pass, so \pageref{LastPage} never resolved and the published PDF
+          # shipped with no page footers at all.
+          args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
 
-      - name: Stage PDF into public/
+      - name: Compile Double Column
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: double-column.tex
+          working_directory: cv
+          args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
+
+      - name: Stage PDFs into public/
         run: |
           mkdir -p public
-          cp cv/main.pdf public/Pedro_Lobato_CV.pdf
+          cp cv/ivy.pdf           public/Pedro_Lobato_CV_Ivy.pdf
+          cp cv/double-column.pdf public/Pedro_Lobato_CV_DoubleColumn.pdf
 
-      - name: Upload PDF as artifact
+      - name: Upload PDFs as artifact
         uses: actions/upload-artifact@v4
         with:
           name: cv-pdf
-          path: public/Pedro_Lobato_CV.pdf
+          path: public/Pedro_Lobato_CV_*.pdf
           if-no-files-found: error
 
-      - name: Commit PDF back to repo
+      - name: Commit PDFs back to repo
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/Pedro_Lobato_CV.pdf
+          git add public/Pedro_Lobato_CV_Ivy.pdf public/Pedro_Lobato_CV_DoubleColumn.pdf
           if git diff --cached --quiet; then
             echo "No PDF changes to commit."
           else
             # No [skip ci]: this commit must trigger deploy.yml so Pages gets the
-            # fresh PDF. It cannot loop build-cv — that only runs on cv/main.tex,
+            # fresh PDFs. It cannot loop build-cv — that only runs on cv/*.tex,
             # not on public/*.pdf.
-            git commit -m "chore(cv): rebuild Pedro_Lobato_CV.pdf"
+            git commit -m "chore(cv): rebuild Pedro_Lobato_CV_{Ivy,DoubleColumn}.pdf"
             git push
           fi
