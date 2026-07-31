@@ -1,0 +1,206 @@
+% =============================================================================
+% Two-column layout variant -- experiment, not the primary CV.
+%
+% Same content as main.tex, restructured into the sidebar layout the Enhancv
+% preview suggested: Experience running down a wide left column, Summary /
+% Skills / Education / Languages stacked in a narrow right column.
+%
+% Purpose is an A/B test against main.tex on a second ATS checker. Be aware of
+% the bias built into the comparison: a two-column body is the layout most
+% likely to break naive text extraction, because the PDF content stream
+% interleaves the columns. paracol emits one column's blocks then the other's,
+% which is the best case; a parser that reads strictly by vertical position
+% will still splice sidebar lines into the middle of Experience bullets.
+% Verify with `pdftotext two-column.pdf -` before trusting a score.
+% =============================================================================
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[top=1.1cm,bottom=1.3cm,left=1.2cm,right=1.2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{paracol}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage{needspace}
+\usepackage[hidelinks]{hyperref}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% --- Palette: same values as main.tex so only the layout differs -------------
+\definecolor{ink}{HTML}{0B1220}
+\definecolor{navy}{HTML}{1D4ED8}
+\definecolor{azure}{HTML}{2563EB}
+\definecolor{slate}{HTML}{334155}
+\definecolor{softgray}{HTML}{6B7280}
+\definecolor{pillline}{HTML}{CBD5E1}
+\definecolor{whisper}{HTML}{EFF6FF}
+
+% --- Building blocks --------------------------------------------------------
+% Section heading: upright caps with the rule UNDERNEATH. Never beside the
+% text -- a rule sharing the heading's baseline gets merged into the word by
+% OCR, which is what cost main.tex its "Skills" and "Summary" headings.
+\newcommand{\cvsection}[1]{%
+  \needspace{3\baselineskip}%
+  \par\vspace{2.2ex}%
+  {\color{ink}\large\bfseries\MakeUppercase{#1}}\par
+  \vspace{0.4ex}%
+  {\color{navy}\rule{\linewidth}{0.9pt}}\par
+  \vspace{0.9ex}}
+
+% Skill pill. Kept as plain text inside a drawn box: the glyphs stay in the
+% text stream, so pills cost nothing at extraction time.
+\newcommand{\pill}[1]{%
+  \tikz[baseline=(p.base)]{%
+    \node[draw=pillline,line width=0.4pt,rounded corners=2.5pt,
+          inner xsep=5pt,inner ysep=3.5pt,anchor=base,
+          text=slate,font=\footnotesize] (p) {#1};}%
+  \hspace{1pt}}
+
+% Experience entry header: role, then employer/location/dates on the next line.
+% Dates sit inline with the employer rather than in a separate date column, so
+% a date parser can bind the range to the job.
+\newcommand{\role}[4]{%
+  \needspace{4\baselineskip}%
+  {\color{ink}\bfseries #1}\par
+  \vspace{0.2ex}%
+  {\color{navy}\small #2} \; {\color{softgray}\small #3 \textbar\ #4}\par
+  \vspace{0.5ex}}
+
+\newcommand{\metric}[1]{{\setlength{\fboxsep}{2pt}\colorbox{whisper}{\color{navy}\bfseries\strut #1}}}
+\newcommand{\rolebold}[1]{{\color{navy}\bfseries #1}}
+\newcommand{\stakeholders}[1]{{\color{azure}\footnotesize\textit{[#1]}}}
+\newcommand{\impact}[1]{{\color{slate}\small #1}}
+% Continuation paragraph inside a bullet -- see main.tex.
+\newcommand{\impactnext}[1]{\\[0.4em]\impact{#1}}
+
+\setlist[itemize]{leftmargin=1.1em,itemsep=0.45ex,topsep=0.5ex,parsep=0pt}
+
+\begin{document}
+
+% --- Header: full width, single column --------------------------------------
+% Contact details run as one horizontal band UNDER the name rather than in a
+% right-hand block level with it. In main.tex the side-by-side arrangement is
+% what makes OCR read across the two and shred the surname and phone number.
+{\fontsize{26}{30}\selectfont\color{ink}\bfseries Pedro Luis Lobato Barros}\par
+\vspace{0.6ex}
+{\large\color{navy} Software Engineer\, \textbar\, Core Logic \& Production Ownership}\par
+\vspace{1.1ex}
+{\small\color{slate}%
+  \faMapMarker*\ Bogotá D.C., Colombia (Remote-first) \quad
+  \faPhone*\ +57 318 507 9105 \quad
+  \faEnvelope\ pedro.lobato2610@gmail.com\par
+  \vspace{0.4ex}
+  \faLinkedin\ linkedin.com/in/lobaton2610 \quad
+  \faGithub\ github.com/Lob26}\par
+\vspace{0.6ex}
+{\color{navy}\rule{\linewidth}{1.2pt}}
+\vspace{1.4ex}
+
+% --- Two columns: 62% experience / 38% sidebar ------------------------------
+\columnratio{0.62}
+\begin{paracol}{2}
+
+% ============================ LEFT: EXPERIENCE ==============================
+\cvsection{Experience}
+
+\role{Junior Software Engineer --- core logic \& production ownership}{Duppla}{Bogotá, Colombia}{Aug 2024 -- Present}
+\impact{Translator between engineering and the commercial, legal and operations teams --- and the engineer who then builds what the conversation agreed on.}
+\begin{itemize}
+  \item \rolebold{Core Product Ownership} \metric{(--96\%)} \stakeholders{Commercial · Operations}\\
+    \impact{Rebuilt the Real Estate Evaluator over four iterations: backend automation, a human-in-the-loop review layer, a migration off Retool once low-code became the constraint rather than the shortcut, then an end-to-end pass over back and front.}
+    \impactnext{Analyst time per property went 90 minutes to 15 to 10 to 4. It sustains 1,100 evaluations a day; of the 3 minutes a run takes, 90 seconds is the data provider, not our code.}
+  \item \rolebold{Live Attack Defense} \metric{(caught in minutes)} \stakeholders{Engineering · Leadership}\\
+    \impact{Months earlier I had added a deliberately small detector: HTTP exceptions carrying known attack signatures, and sources accumulating failed requests.}
+    \impactnext{When a bot exposed the full API surface and attacks hit billing and reporting within minutes, that cheap signal caught it live. Shipped endpoint-level defenses in real time and hardened the backend; no successful intrusion recorded since, as volume has grown.}
+  \item \rolebold{Contract Automation} \metric{(--90\% review errors)} \stakeholders{Legal · Commercial · Operations}\\
+    \impact{Sole designer and owner of the contract generation engine --- unowned work I made the case for --- now the company's only contract path. Modelled the legal document as validated data, not a text template: typed placeholders and validation rules refuse an incomplete contract before it reaches a lawyer.}
+    \impactnext{Review errors down 90\%, request-to-approval turnaround down 40\%. Load-tested at fifteen times daily volume in an hour; the ceiling was the provider's rate limit, not the pipeline --- the hundredfold planned for is a quota change, not a rebuild.}
+  \item \rolebold{Salesforce Integration} \metric{(--50\% CRM inconsistencies)} \stakeholders{Commercial · RevOps}\\
+    \impact{Own the seam between the backend and Salesforce: proposed the schema and SOQL/SOSL optimisations the org now runs on.}
+    \impactnext{Built the data-cleansing and shared-utility layer that halved record inconsistencies, making CRM data reliable enough for the revenue team to report on.}
+  \item \rolebold{Engineering Leverage} \metric{(--30\% debt growth rate)} \stakeholders{Engineering}\\
+    \impact{Custom AWS and Slack wrappers now used across all four engineers and every backend, so nobody hand-rolls a client per service. SonarQube debt accumulation slowed about 30\% against its prior trend once they landed.}
+    \impactnext{The front-end architecture I designed for contract generation became the pattern the evaluator rebuild followed; new engineers ship on day one.}
+  \item \rolebold{Engineering Standards} \metric{(3 $\rightarrow$ 25 generated front-ends)} \stakeholders{Engineering · Leadership}\\
+    \impact{Raised AI-generated internal front-ends as a scoped reliability risk, not a style preference: generation outruns ownership, and the cost lands later as production surface nobody is accountable for. The estate went from three to twenty-five.}
+    \impactnext{Introduced machine-readable project context so generated code follows the product's own patterns instead of a generic template.}
+\end{itemize}
+
+\vspace{0.8ex}
+\role{Software Development Intern}{Duppla}{Bogotá, Colombia}{Jun 2024 -- Aug 2024}
+\impact{Took the early leap from academic code into production work: backend services for customer assessment and internal logistics on Slack.}
+\begin{itemize}
+  \item \rolebold{Business Process Migration} \metric{(--90\%)} \stakeholders{Legal · Risk · Origination}\\
+    \impact{Given one line of direction --- ``get this under 10 minutes'' --- traced the commercial call flow to find which data actually gated the decision, then rebuilt the Client Evaluator around it instead of pre-warming everything.}
+    \impactnext{Thirty minutes of manual work collapsed into three; it has since absorbed a 1,500-evaluation day against a normal load of 170.}
+  \item \rolebold{Internal Logistics} \stakeholders{People Ops}\\
+    \impact{Slack automation for attendance and office logistics still used daily by HQ.}
+  \item \rolebold{Stability} \stakeholders{IT}\\
+    \impact{Credentialing code running with minimal maintenance two years post-launch --- the quiet kind of reliability.}
+\end{itemize}
+
+% ============================= RIGHT: SIDEBAR ===============================
+\switchcolumn
+
+\cvsection{Summary}
+\impact{Software engineer on a four-person team, owning the three engines a Fintech and Proptech business runs on --- property valuation, client screening and contract generation --- and how they behave in production. Cut operational wait times by up to \textbf{96\%}, detected and contained a live attack on production, and bridged backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). Building an individual-contributor career --- depth in harder systems, mentoring teammates where it unblocks them. Fluent across English and Spanish with Legal, Commercial and Operations.}
+
+\cvsection{Skills}
+{\color{navy}\footnotesize\bfseries Languages}\par\vspace{0.4ex}
+\raggedright
+\pill{Python} \pill{Go} \pill{TypeScript} \pill{JavaScript} \pill{Ruby} \pill{SQL} \pill{Solidity}\par
+\vspace{0.9ex}
+{\color{navy}\footnotesize\bfseries Frameworks \& Front-end}\par\vspace{0.4ex}
+\pill{Angular} \pill{Next.js} \pill{React} \pill{Vue} \pill{Astro} \pill{REST APIs}\par
+\vspace{0.9ex}
+{\color{navy}\footnotesize\bfseries Cloud \& Infrastructure}\par\vspace{0.4ex}
+\pill{AWS} \pill{Google Cloud Platform} \pill{Northflank} \pill{Terraform} \pill{Docker} \pill{CI/CD} \pill{GitHub Actions}\par
+\vspace{0.9ex}
+{\color{navy}\footnotesize\bfseries Databases \& Data}\par\vspace{0.4ex}
+\pill{PostgreSQL} \pill{Redis} \pill{BigQuery} \pill{SOQL/SOSL}\par
+\vspace{0.9ex}
+{\color{navy}\footnotesize\bfseries Integrations}\par\vspace{0.4ex}
+\pill{Salesforce (Apex, REST)} \pill{Slack} \pill{RabbitMQ} \pill{n8n}\par
+\vspace{0.9ex}
+{\color{navy}\footnotesize\bfseries Practices}\par\vspace{0.4ex}
+\pill{System design} \pill{Security architecture} \pill{SRE principles} \pill{Observability} \pill{Load testing} \pill{Code review} \pill{Git}\par
+
+\cvsection{Education}
+{\color{ink}\bfseries\small B.S. Systems \& Computing Engineering}\par
+\vspace{0.2ex}
+{\color{navy}\small Universidad de los Andes}\par
+{\color{softgray}\small Bogotá, Colombia \textbar\ Expected 2027}\par
+
+% No proficiency dots. Four-of-five filled circles are pure decoration: an ATS
+% drops the vector graphic entirely, and a human reads "C1" faster and more
+% precisely than they count dots. The CEFR level carries all of the meaning.
+\cvsection{Languages}
+{\color{ink}\small English} \hfill {\color{navy}\small\bfseries C1}\par
+\vspace{0.4ex}
+{\color{ink}\small Spanish} \hfill {\color{navy}\small\bfseries Native}\par
+
+\cvsection{Projects}
+{\color{ink}\small\bfseries Personal portfolio \& CV pipeline}\par
+{\color{softgray}\footnotesize Vue 3, Vite, Tailwind; GitHub Actions builds this CV from LaTeX and deploys to Pages}\par
+{\color{softgray}\footnotesize\href{https://lob26.github.io}{lob26.github.io}}\par
+{\color{softgray}\footnotesize\href{https://github.com/Lob26/Lob26.github.io}{github.com/Lob26/Lob26.github.io}}\par
+\vspace{0.6ex}
+{\color{ink}\small\bfseries Moon Phase Background}\par
+{\color{softgray}\footnotesize Scheduled Python job: NASA lunar imagery, ImageMagick compositing, Windows wallpaper}\par
+{\color{softgray}\footnotesize\href{https://github.com/Lob26/moon-phase-background-windows}{github.com/Lob26/moon-phase-background-windows}}\par
+\vspace{0.6ex}
+{\color{ink}\small\bfseries Culturas Gastronómicas}\par
+{\color{softgray}\footnotesize Fullstack Spring Boot \& Angular}\par
+{\color{softgray}\footnotesize\href{https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Front}{github.com/Lob26/ISIS2603\_CulturasGastronomicas\_Front}}\par
+{\color{softgray}\footnotesize\href{https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Back}{github.com/Lob26/ISIS2603\_CulturasGastronomicas\_Back}}\par
+\vspace{0.6ex}
+{\color{ink}\small\bfseries Alohandes}\par
+{\color{softgray}\footnotesize JDO data persistence}\par
+{\color{softgray}\footnotesize\href{https://github.com/Lob26/ISIS2304_Alohandes}{github.com/Lob26/ISIS2304\_Alohandes}}\par
+
+\end{paracol}
+\end{document}
