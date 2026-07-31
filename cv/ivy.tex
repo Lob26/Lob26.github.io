@@ -1,0 +1,300 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.82,top=1.4cm,bottom=1.8cm]{geometry}
+% Disable microtype font expansion (moderncv loads microtype; fontawesome5's
+% bitmap shapes are not scalable, so auto-expansion crashes pdflatex).
+\microtypesetup{expansion=false}
+% moderncv loads fontawesome5 itself in current TeX Live; loading it again here
+% redefines \l_fontawesome_style_str and aborts the build. Rely on the class.
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{etoolbox}
+\usepackage{needspace}
+
+% --- Visual palette: ink near-black for structure, navy for accents, ---
+% --- sky for soft highlights, slate for body, softgray for descriptions.
+\definecolor{ink}{HTML}{0B1220}
+\definecolor{navy}{HTML}{1D4ED8}
+\definecolor{azure}{HTML}{2563EB}
+\definecolor{sky}{HTML}{60A5FA}
+\definecolor{slate}{HTML}{334155}
+\definecolor{softgray}{HTML}{6B7280}
+\definecolor{deepgray}{HTML}{374151}
+\definecolor{whisper}{HTML}{EFF6FF}
+\definecolor{mist}{HTML}{F1F5F9}
+
+% Override moderncv's internal palette (color1 drives section rules + headings,
+% color2 is the name). Gives Experience/Projects headings a navy rule automatically.
+\colorlet{color1}{navy}
+\colorlet{color2}{ink}
+% moderncvbodyi.sty does \colorlet{bodyrulecolor}{color1} at load time, i.e.
+% before the \colorlet above runs, so the section rules were snapshotting the
+% old colour and printing black. Re-point them explicitly.
+\colorlet{bodyrulecolor}{navy}
+\colorlet{sectioncolor}{ink}
+
+% Body typography: name in ink, role in navy italic, sections in ink bold with
+% the navy rule coming from moderncv classic itself.
+% Left at moderncv's 38pt default. Shrinking it to fit one line was measurably
+% WORSE under OCR: at 38pt the name wraps and only "Barros" is lost, but on one
+% line the whole name sits level with the contact column and auto page
+% segmentation reads straight across, destroying all four tokens. The residual
+% cause is the two-column header itself, not the size.
+\renewcommand*{\namefont}{\fontsize{28}{32}\bfseries\upshape\color{ink}}
+\renewcommand*{\titlefont}{\fontsize{14}{16}\mdseries\slshape\color{navy}}
+% Upright, not \slshape. The header block carries the phone, email and profile
+% URLs; in oblique sans-serif at \small, OCR shredded them (the phone number
+% came back as "2...,.o¢%77827,2" and the email split in two). Contact details
+% are the one block that must survive a scan, so they give up the italic.
+\renewcommand*{\addressfont}{\small\mdseries\upshape\color{softgray}}
+\renewcommand*{\quotefont}{\large\slshape\color{slate}}
+\renewcommand*{\sectionfont}{\Large\bfseries\color{ink}}
+\renewcommand*{\subsectionfont}{\large\mdseries\slshape\color{navy}}
+
+\setlength{\footskip}{45pt}
+
+% --- Section headings: rule under the text, not beside it -------------------
+% moderncv classic puts a \rule{\hintscolumnwidth}{0.95ex} in the LEFT cell of
+% the same row as the heading, so a heavy black bar sits on the heading's own
+% baseline. Rasterise the page and OCR merges bar and word: "Summary" came back
+% as "mes SUM alry", "Skills" and "Projects" were lost outright. Section names
+% are exactly the tokens an ATS uses to segment a CV, so losing them is the
+% worst possible failure. Same rule, moved under the heading, where OCR reads
+% it as an ordinary separator. Redefinition mirrors moderncvbodyi.sty.
+\makeatletter
+\RenewDocumentCommand{\section}{sm}{%
+  \par\addvspace{2.5ex}%
+  \phantomsection{}% reset the anchor for hyperrefs
+  \addcontentsline{toc}{section}{#2}%
+  \cvitem[0ex]{}{%
+    \strut\sectionstyle{#2}%
+    \newline\vspace*{-1.2ex}%
+    {\color{bodyrulecolor}\rule{\maincolumnwidth}{0.9pt}}}%
+  \par\nobreak\addvspace{1ex}\@afterheading}
+\makeatother
+
+% --- Custom helpers ---------------------------------------------------------
+% Body description under each bullet: slightly warmer than before.
+\newcommand{\impact}[1]{{\color{slate}\small #1}}
+% Continuation paragraph inside the same bullet. Each impact statement used to
+% be one 60-110 word block; a human skims the CV after the ATS passes it, and a
+% wall of text gets skipped even when the numbers inside it are good. Splitting
+% each bullet into "what I did" and "what it produced" costs no words and makes
+% the metrics land on their own line.
+\newcommand{\impactnext}[1]{\\[0.4em]\impact{#1}}
+% Metric: navy bold + a soft whisper background so the number pops.
+\newcommand{\metric}[1]{%
+  \begingroup
+  \setlength{\fboxsep}{2pt}%
+  \colorbox{whisper}{\color{navy}\bfseries\strut #1}%
+  \endgroup
+}
+% Stakeholder chip: bracketed, sky italic, slightly stronger than before.
+\newcommand{\stakeholders}[1]{{\color{azure}\footnotesize\textsf{\textit{[#1]}}}}
+% Role label inside bullets (the bold lead-in): navy bold.
+\newcommand{\rolebold}[1]{{\color{navy}\bfseries #1}}
+% Callout box for Profile and project human/technical pairs.
+\newcommand{\callout}[1]{%
+  \begingroup
+  \setlength{\fboxsep}{0.8em}%
+  \noindent\fcolorbox{sky!40}{whisper}{%
+    \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+      \color{slate}\small #1%
+    \end{minipage}%
+  }%
+  \endgroup
+}
+% Visual separator: a softer, two-tone rule (navy dot + grey line).
+\newcommand{\softrule}{%
+  \vspace{0.45em}
+  \noindent\hspace{0pt}{\color{navy}\rule{6pt}{2pt}}{\color{softgray!40}\rule[0.5pt]{0.92\linewidth}{0.4pt}}\hspace{0pt}%
+  \vspace{0.35em}
+}
+
+% --- Identity ---------------------------------------------------------------
+\name{Pedro Luis}{Lobato Barros}
+% The official grade is Junior Software Engineer and it appears verbatim on the
+% Experience entry, which is where a reference check looks. This line is a
+% functional descriptor, not a title claim -- dropping a company's seniority
+% prefix from a positioning line is normal; inventing "Lead" was not.
+\title{Software Engineer · Core Logic \& Production Ownership}
+\address{Bogotá D.C., Colombia}{Remote-first}{}
+\phone[mobile]{+57~318~507~9105}
+\email{pedro.lobato2610@gmail.com}
+% Display the full URL rather than the bare handle: ATS contact-extraction
+% matches on the "linkedin.com/in/" and "github.com/" patterns, not the handle.
+% \social{<type>}[<url>]{<text>}: arg 2 is the link target, arg 3 the shown
+% text -- these reproduce moderncv's own default targets, only the label grows.
+\social[linkedin][www.linkedin.com/in/lobaton2610]{linkedin.com/in/lobaton2610}
+\social[github][www.github.com/Lob26]{github.com/Lob26}
+
+\begin{document}
+\makecvtitle
+\vspace{-1.2em}
+
+% --- Summary ----------------------------------------------------------------
+% Section names are deliberately the ATS-whitelisted ones (Summary / Skills /
+% Experience / Education / Projects). Parsers segment a CV by matching headings
+% against that list; "Profile", "Technical Toolbox" and "Public Repositories"
+% do not match, so those blocks were being read as unclassified body text.
+\section{Summary}
+\cvitem{}{%
+  % Team size moved into the first sentence on purpose. "Owner of the three
+  % engines a high-growth business runs on" reads as inflated from someone two
+  % years in, because nothing on the page said the engineering team is four
+  % people. Naming it makes the same claim credible instead of grandiose.
+  Software engineer on a four-person team, owning the three engines a Fintech and Proptech business runs on --- property valuation, client screening and contract generation --- and how they behave in production. Cut operational wait times by up to \textbf{96\%}, detected and contained a live attack on production, and bridged backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). Building an individual-contributor career --- depth in harder systems, mentoring teammates where it unblocks them. Fluent across English and Spanish with Legal, Commercial and Operations.
+}
+
+\vspace{0.2em}
+\callout{\textbf{Systems that stopped needing me.} Credentialing code still running with minimal maintenance two years after launch · a contract engine issuing every contract the company signs while sitting in maintenance · a backend posture that has held as attack volume grew. I measure the work by what it does after I stop touching it.}
+
+\softrule
+
+% Business Capabilities grid removed: every Experience bullet already names its
+% stakeholders, so the chips restated the evidence instead of adding to it.
+
+% --- Skills -----------------------------------------------------------------
+% One \cvitem with inline labels, NOT six \cvitem{label}{value} pairs. moderncv
+% renders the label in a separate hint column, and the PDF text stream then
+% emits all six labels as one run followed by all six values as another --- so
+% an ATS pairs "Integrations" with the languages list. Inline labels keep each
+% category and its values on the same extracted line.
+\section{Skills}
+\cvitem{}{%
+  % \newline, not \\: moderncv classic renders \cvitem through a tabular, where
+  % \\ is a row separator and aborts the build ("Missing } inserted").
+  \textbf{Languages:} Python, Go, TypeScript, JavaScript, Ruby, SQL, Solidity\newline
+  \textbf{Frameworks \& Front-end:} Angular, Next.js (React), Vue, Astro, REST APIs\newline
+  \textbf{Cloud \& Infrastructure:} AWS, Google Cloud Platform (GCP), Northflank, Terraform, Docker, Infrastructure as Code, CI/CD, GitHub Actions\newline
+  \textbf{Databases \& Data:} PostgreSQL, Redis, BigQuery, SOQL/SOSL\newline
+  \textbf{Integrations:} Salesforce (Apex, REST), Slack, RabbitMQ, n8n, custom AWS \& Slack wrappers\newline
+  \textbf{Practices:} System design, security architecture, SRE principles, observability, load testing, code review, Git\newline
+  \textbf{Spoken languages:} English (C1), Spanish (Native)%
+}
+
+\softrule
+
+% --- Education + Projects ---------------------------------------------------
+% These sit above Experience on purpose. Experience needs a full page of its
+% own, so it starts on page 2 regardless; leaving Education and Projects below
+% it stranded them alone on a third page while page 1 ended half empty. Moved
+% up, they fill page 1 and the CV closes at two pages. Education-before-
+% Experience is also the conventional order while the degree is in progress.
+\section{Education}
+% Was "2020 -- 2027 (Expected)". Publishing the start year exposes a seven-year
+% span on a five-year degree and pins your age, which is the classic date-bias
+% trigger; it also invites "why so long?" when the honest answer (working full
+% time since 2024) is not on the page. Expected graduation alone is standard for
+% an in-progress degree and gives a recruiter everything they need.
+\cventry{Expected 2027}%
+  {\textbf{B.S. Systems \& Computing Engineering}}%
+  {Universidad de los Andes}%
+  {Bogotá, Colombia}%
+  {}{}
+
+\softrule
+
+\section{Projects}
+% URLs printed as text, not hidden behind a label: link annotations are the
+% first thing a parser drops, so anything only reachable through \href text is
+% invisible to an ATS. The front-end repo was missing entirely.
+% Listed first: it is the only public repository that corroborates the current
+% stack (Vue, GitHub Actions) and the only one still being worked on. The
+% coursework below stays because it shows fullstack breadth, but it is three
+% years old and a reviewer dates it instantly.
+\cvitem{}{%
+  \textbf{Personal portfolio \& CV pipeline} --- Vue 3, Vite, Tailwind; GitHub Actions builds this CV from LaTeX and deploys to Pages\newline
+  {\footnotesize\color{softgray}%
+    \href{https://lob26.github.io}{\faGlobe\ lob26.github.io}\hspace{1em}\textbar\hspace{1em}%
+    \href{https://github.com/Lob26/Lob26.github.io}{\faGithub\ github.com/Lob26/Lob26.github.io}}\newline
+  % Described by its transferable parts -- scheduled job, third-party data
+  % source, process orchestration -- not by the whimsy. It is the only public
+  % Python and the only thing here that was not assigned coursework.
+  % Description must stay on ONE line -- wrapping it costs a whole page.
+  \textbf{Moon Phase Background} --- scheduled Python job compositing NASA lunar imagery\newline
+  {\footnotesize\color{softgray}%
+    \href{https://github.com/Lob26/moon-phase-background-windows}{\faGithub\ github.com/Lob26/moon-phase-background-windows}}\newline
+  \textbf{Culturas Gastronómicas} --- fullstack Spring Boot \& Angular application\newline
+  {\footnotesize\color{softgray}%
+    \href{https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Front}{\faGithub\ github.com/Lob26/ISIS2603\_CulturasGastronomicas\_Front}\newline
+    \href{https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Back}{\faGithub\ github.com/Lob26/ISIS2603\_CulturasGastronomicas\_Back}}\newline
+  % No gap between the three entries: page 1 has under a line of slack, and
+  % 0.25em here costs a whole extra page. Verified -- do not "tidy" this.
+  \textbf{Alohandes} --- JDO data persistence project\newline
+  {\footnotesize\color{softgray}%
+    \href{https://github.com/Lob26/ISIS2304_Alohandes}{\faGithub\ github.com/Lob26/ISIS2304\_Alohandes}}%
+}
+
+\softrule
+
+% --- Experience -------------------------------------------------------------
+% Guards the heading only. Note that it cannot pull Experience onto page 1: a
+% \cventry renders as ONE tabular, and a tabular cannot break across a page, so
+% each job is an atomic block roughly a page tall. That -- not this length -- is
+% what leaves the gap at the foot of page 1. Fixing it means emitting the
+% bullets as their own breakable list outside the \cventry.
+\needspace{6\baselineskip}
+\section{Experience}
+\nopagebreak
+
+\cventry{Aug 2024 -- Present}%
+  {\textbf{Junior Software Engineer}}%
+  {Duppla}%
+  {Bogotá, Colombia}%
+  {\textit{Core logic \& production ownership · Cross-functional lead}}{%
+  Translator between engineering and the commercial, legal and operations teams --- and the engineer who then builds what the conversation agreed on.
+  \begin{itemize}
+    \item \rolebold{Core Product Ownership} \metric{(--96\%)} \stakeholders{Commercial · Operations}\\
+      \impact{Rebuilt the Real Estate Evaluator over four iterations: backend automation, a human-in-the-loop review layer, a migration off Retool once low-code became the constraint rather than the shortcut, then an end-to-end pass over back and front.}
+      \impactnext{Analyst time per property went 90 minutes to 15 to 10 to 4. It sustains 1,100 evaluations a day; of the 3 minutes a run takes, 90 seconds is the data provider, not our code.}
+    % "100% repelled" was an unfalsifiable absolute -- you cannot evidence zero
+    % successful intrusions, and a security interviewer will press on it. The
+    % detection latency is the defensible number.
+    \item \rolebold{Live Attack Defense} \metric{(caught in minutes)} \stakeholders{Engineering · Leadership}\\
+      \impact{Months earlier I had added a deliberately small detector: HTTP exceptions carrying known attack signatures, and sources accumulating failed requests.}
+      \impactnext{When a bot exposed the full API surface and attacks hit billing and reporting within minutes, that cheap signal caught it live. Shipped endpoint-level defenses in real time and hardened the backend; no successful intrusion recorded since, as volume has grown.}
+    \item \rolebold{Contract Automation} \metric{(--90\% review errors)} \stakeholders{Legal · Commercial · Operations}\\
+      \impact{Sole designer and owner of the contract generation engine --- unowned work I made the case for --- now the company's only contract path. Modelled the legal document as validated data, not a text template: typed placeholders and validation rules refuse an incomplete contract before it reaches a lawyer.}
+      \impactnext{Review errors down 90\%, request-to-approval turnaround down 40\%. Load-tested at fifteen times daily volume in an hour; the ceiling was the provider's rate limit, not the pipeline --- the hundredfold planned for is a quota change, not a rebuild.}
+    \item \rolebold{Salesforce Integration} \metric{(--50\% CRM inconsistencies)} \stakeholders{Commercial · RevOps}\\
+      \impact{Own the seam between the backend and Salesforce: proposed the schema and SOQL/SOSL optimisations the org now runs on.}
+      \impactnext{Built the data-cleansing and shared-utility layer that halved record inconsistencies, making CRM data reliable enough for the revenue team to report on.}
+    % "-30% tech debt" implied the outstanding balance fell, which nothing
+    % measures. The SonarQube regression measured the SLOPE -- how fast new debt
+    % arrives -- and that is both what actually changed and a stronger claim:
+    % shared infrastructure slows accumulation, it does not repay principal.
+    \item \rolebold{Engineering Leverage} \metric{(--30\% debt growth rate)} \stakeholders{Engineering}\\
+      \impact{Custom AWS and Slack wrappers now used across all four engineers and every backend, so nobody hand-rolls a client per service. SonarQube debt accumulation slowed about 30\% against its prior trend once they landed.}
+      \impactnext{The front-end architecture I designed for contract generation became the pattern the evaluator rebuild followed; new engineers ship on day one.}
+    % Chose 3 -> 25 over "4 I own": the growth is what makes the risk legible.
+    % Stated as a measured trend, not as a prediction that came true -- the
+    % original ("the trajectory played out on the timeline I described") read as
+    % keeping score against colleagues, which is the version that loses offers.
+    \item \rolebold{Engineering Standards} \metric{(3 $\rightarrow$ 25 generated front-ends)} \stakeholders{Engineering · Leadership}\\
+      \impact{Raised AI-generated internal front-ends as a scoped reliability risk, not a style preference: generation outruns ownership, and the cost lands later as production surface nobody is accountable for. The estate went from three to twenty-five.}
+      \impactnext{Introduced machine-readable project context so generated code follows the product's own patterns instead of a generic template.}
+  \end{itemize}
+}
+
+\cventry{Jun 2024 -- Aug 2024}%
+  {\textbf{Software Development Intern}}%
+  {Duppla}%
+  {Bogotá, Colombia}%
+  {\textit{First production ownership}}{%
+  Took the early leap from academic code into production work: backend services for customer assessment and internal logistics on Slack.
+  \begin{itemize}
+    \item \rolebold{Business Process Migration} \metric{(--90\%)} \stakeholders{Legal · Risk · Origination}\\
+      \impact{Given one line of direction --- ``get this under 10 minutes'' --- traced the commercial call flow to find which data actually gated the decision, then rebuilt the Client Evaluator around it instead of pre-warming everything.}
+      \impactnext{Thirty minutes of manual work collapsed into three; it has since absorbed a 1,500-evaluation day against a normal load of 170.}
+    \item \rolebold{Internal Logistics} \stakeholders{People Ops}\\
+      \impact{Slack automation for attendance and office logistics still used daily by HQ.}
+    \item \rolebold{Stability} \stakeholders{IT}\\
+      \impact{Credentialing code running with minimal maintenance two years post-launch --- the quiet kind of reliability.}
+  \end{itemize}
+}
+
+\end{document}
