@@ -85,16 +85,25 @@ onBeforeUnmount(() => {
   <section
     id="home"
     aria-labelledby="hero-heading"
-    class="relative overflow-hidden pt-20 pb-16 sm:pt-28 sm:pb-24"
+    class="relative pt-20 pb-16 sm:pt-28 sm:pb-24"
   >
-    <div
-      ref="parallaxEl"
-      aria-hidden="true"
-      class="parallax-layer pointer-events-none absolute inset-x-0 top-0 -z-10 hidden sm:block"
-    >
+    <!--
+      The clip lives on this wrapper, not on <section>. It spans the same area,
+      so the blurred gradient is contained exactly as before — but the CV format
+      menu is no longer a descendant of it. On the section, overflow-hidden also
+      clipped that menu, which opens past the hero's bottom edge, and a clipping
+      ancestor cuts descendants off regardless of their z-index. The menu looked
+      sliced in half; no z-index would have fixed it.
+    -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <div
-        class="mx-auto h-72 w-[42rem] max-w-full rounded-full bg-gradient-to-br from-accent/15 via-accent-soft/10 to-transparent blur-3xl dark:from-accent/20 dark:via-accent-soft/10"
-      />
+        ref="parallaxEl"
+        class="parallax-layer absolute inset-x-0 top-0 hidden sm:block"
+      >
+        <div
+          class="mx-auto h-72 w-[42rem] max-w-full rounded-full bg-gradient-to-br from-accent/15 via-accent-soft/10 to-transparent blur-3xl dark:from-accent/20 dark:via-accent-soft/10"
+        />
+      </div>
     </div>
 
     <div
