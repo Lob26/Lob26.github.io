@@ -167,12 +167,12 @@
 \cvitem{}{%
   % \newline, not \\: moderncv classic renders \cvitem through a tabular, where
   % \\ is a row separator and aborts the build ("Missing } inserted").
-  \textbf{Languages:} Python, Go, TypeScript, JavaScript, Ruby, SQL, Solidity\newline
-  \textbf{Frameworks \& Front-end:} Angular, Next.js (React), Vue, Astro, REST APIs\newline
+  \textbf{Languages:} Python, Java, Go, TypeScript, JavaScript, Ruby, SQL, Solidity\newline
+  \textbf{Frameworks \& Front-end:} Angular, Spring Boot, Next.js (React), Vue, Astro, REST APIs\newline
   \textbf{Cloud \& Infrastructure:} AWS, Google Cloud Platform (GCP), Northflank, Terraform, Docker, Infrastructure as Code, CI/CD, GitHub Actions\newline
-  \textbf{Databases \& Data:} PostgreSQL, Redis, BigQuery, SOQL/SOSL\newline
+  \textbf{Databases \& Data:} PostgreSQL (pgvector), Redis, BigQuery, SOQL/SOSL\newline
   \textbf{Integrations:} Salesforce (Apex, REST), Slack, RabbitMQ, n8n, custom AWS \& Slack wrappers\newline
-  \textbf{Practices:} System design, security architecture, SRE principles, observability, load testing, code review, Git\newline
+  \textbf{Practices:} System design, security architecture, SRE principles, observability, RAG, load testing, code review, Git\newline
   \textbf{Spoken languages:} English (C1), Spanish (Native)%
 }
 
@@ -201,12 +201,21 @@
 \section{Projects}
 % URLs printed as text, not hidden behind a label: link annotations are the
 % first thing a parser drops, so anything only reachable through \href text is
-% invisible to an ATS. The front-end repo was missing entirely.
-% Listed first: it is the only public repository that corroborates the current
-% stack (Vue, GitHub Actions) and the only one still being worked on. The
-% coursework below stays because it shows fullstack breadth, but it is three
-% years old and a reviewer dates it instantly.
+% invisible to an ATS.
+%
+% Ordered by how much each one corroborates the Skills section. Redux leads: it
+% is the only public evidence for Java, Spring, Terraform, n8n and the RAG work,
+% all of which were previously unbacked claims. The 2023 coursework it replaced
+% (CulturasGastronomicas Front/Back, Alohandes) is delisted -- this supersedes
+% it, and keeping both invites a date comparison that removal wins.
+%
+% The provenance clause is deliberate. The domain reads academic, so a reviewer
+% may assume coursework anyway; saying it first, with "rebuilt from scratch",
+% turns the assumption into a three-year before/after of the same problem.
 \cvitem{}{%
+  \textbf{Culturas Gastronómicas Redux} --- Angular 22 + Spring Boot; self-hosted RAG (Ollama, pgvector) over hybrid search, Terraform infrastructure and n8n automation. Rebuilt from scratch from a 2023 course project.\newline
+  {\footnotesize\color{softgray}%
+    \href{https://github.com/Lob26/culturas-gastronomicas-redux}{\faGithub\ github.com/Lob26/culturas-gastronomicas-redux}}\newline
   \textbf{Personal portfolio \& CV pipeline} --- Vue 3, Vite, Tailwind; GitHub Actions builds this CV from LaTeX and deploys to Pages\newline
   {\footnotesize\color{softgray}%
     \href{https://lob26.github.io}{\faGlobe\ lob26.github.io}\hspace{1em}\textbar\hspace{1em}%
@@ -218,15 +227,8 @@
   \textbf{Moon Phase Background} --- scheduled Python job compositing NASA lunar imagery\newline
   {\footnotesize\color{softgray}%
     \href{https://github.com/Lob26/moon-phase-background-windows}{\faGithub\ github.com/Lob26/moon-phase-background-windows}}\newline
-  \textbf{Culturas Gastronómicas} --- fullstack Spring Boot \& Angular application\newline
-  {\footnotesize\color{softgray}%
-    \href{https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Front}{\faGithub\ github.com/Lob26/ISIS2603\_CulturasGastronomicas\_Front}\newline
-    \href{https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Back}{\faGithub\ github.com/Lob26/ISIS2603\_CulturasGastronomicas\_Back}}\newline
-  % No gap between the three entries: page 1 has under a line of slack, and
-  % 0.25em here costs a whole extra page. Verified -- do not "tidy" this.
-  \textbf{Alohandes} --- JDO data persistence project\newline
-  {\footnotesize\color{softgray}%
-    \href{https://github.com/Lob26/ISIS2304_Alohandes}{\faGithub\ github.com/Lob26/ISIS2304\_Alohandes}}%
+  % No gap between the entries: page 1 has under a line of slack, and 0.25em
+  % here costs a whole extra page. Verified -- do not "tidy" this.
 }
 
 \softrule
