@@ -541,29 +541,28 @@ export const projects: Project[] = [
     tags: ['Security', 'Observability', 'Incident Response'],
     link: null,
   },
+  // Replaces the 2023 coursework entries (CulturasGastronomicas Front/Back and
+  // Alohandes). The rewrite supersedes them, and listing both invited a date
+  // comparison that removing them wins.
   {
     title: {
-      en: 'Fullstack Spring / Angular App',
-      es: 'Aplicación Fullstack Spring / Angular',
+      en: 'Culturas Gastronómicas Redux',
+      es: 'Culturas Gastronómicas Redux',
     },
     description: {
-      en: 'Public academic project combining a Spring Boot backend with an Angular frontend.',
-      es: 'Proyecto académico público que combina un backend en Spring Boot con un frontend en Angular.',
+      en: 'A 2023 course project rebuilt from scratch: Angular 22 and Spring Boot, '
+        + 'with a self-hosted assistant that answers from the catalogue itself — '
+        + 'hybrid search over Postgres and pgvector, generated through a local model, '
+        + 'every claim tied back to a source. Infrastructure declared in Terraform, '
+        + 'scheduled jobs in n8n.',
+      es: 'Un proyecto de curso de 2023 reescrito desde cero: Angular 22 y Spring Boot, '
+        + 'con un asistente autoalojado que responde a partir del propio catálogo — '
+        + 'búsqueda híbrida sobre Postgres y pgvector, generación con un modelo local '
+        + 'y cada afirmación anclada a su fuente. Infraestructura declarada en Terraform '
+        + 'y tareas programadas en n8n.',
     },
-    tags: ['Spring Boot', 'Angular', 'Java'],
-    link: 'https://github.com/Lob26/ISIS2603_CulturasGastronomicas_Back',
-  },
-  {
-    title: {
-      en: 'JDO Data Persistence Project',
-      es: 'Proyecto de Persistencia de Datos con JDO',
-    },
-    description: {
-      en: 'Academic exploration of Java Data Objects for object-relational persistence patterns.',
-      es: 'Exploración académica de Java Data Objects para patrones de persistencia objeto-relacional.',
-    },
-    tags: ['Java', 'JDO', 'Persistence'],
-    link: 'https://github.com/Lob26/ISIS2304_Alohandes',
+    tags: ['Spring Boot', 'Angular', 'Terraform', 'pgvector', 'Ollama', 'n8n'],
+    link: 'https://github.com/Lob26/culturas-gastronomicas-redux',
   },
 ]
 
