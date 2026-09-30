@@ -41,3 +41,6 @@ cv/*.txt
 
 # CodeGraph local index — machine-specific, never shared.
 .codegraph/
+
+# Local avatar test backup
+public/avatar.original.jpg

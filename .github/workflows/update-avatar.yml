@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Fetch LinkedIn avatar
+      - name: Fetch LinkedIn avatar and extract palette
         env:
           # Sanitize: strip any stray whitespace/newlines that leaked into the secret.
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
@@ -31,19 +31,20 @@ jobs:
           export LINKEDIN_ACCESS_TOKEN="$(printf '%s' "$LINKEDIN_ACCESS_TOKEN" | tr -d '[:space:]')"
           export LINKEDIN_REFRESH_TOKEN="$(printf '%s' "$LINKEDIN_REFRESH_TOKEN" | tr -d '[:space:]')"
           node scripts/fetch-linkedin-avatar.mjs
+          node scripts/extract-palette.mjs
 
-      - name: Commit updated avatar
+      - name: Commit updated avatar and palette
         id: commit
         run: |
-          if [[ -n "$(git status --porcelain public/avatar.jpg)" ]]; then
+          if [[ -n "$(git status --porcelain public/avatar.jpg src/data/palette.json src/palette.css)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add public/avatar.jpg
-            git commit -m "chore(avatar): refresh LinkedIn profile picture"
+            git add public/avatar.jpg src/data/palette.json src/palette.css
+            git commit -m "chore(avatar): refresh LinkedIn profile picture and color palette"
             git push
             echo "changed=true" >> "$GITHUB_OUTPUT"
           else
-            echo "No avatar changes."
+            echo "No avatar or palette changes."
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 

@@ -170,7 +170,7 @@ onBeforeUnmount(() => {
           <div class="mt-8 flex flex-wrap gap-3">
             <a
               :href="`mailto:${profile.links.email}`"
-              class="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-soft hover:shadow-md"
+              class="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-contrast shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-soft hover:shadow-md"
             >
               {{ t(ui.hero.getInTouch) }}
             </a>

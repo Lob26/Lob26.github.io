@@ -1,0 +1,28 @@
+{
+  "source": "/home/lob26/code/Github/MyPage_CV/public/avatar.jpg",
+  "generatedAt": "2026-09-30T15:11:27.541Z",
+  "isFallback": true,
+  "sourceHex": "#2563eb",
+  "hue": 221,
+  "saturation": 0.83,
+  "tokens": {
+    "light": {
+      "accent": "#1057ef",
+      "accentSoft": "#2d69eb",
+      "accentContrast": "#ffffff",
+      "rgb": "16 87 239",
+      "rgbSoft": "45 105 235",
+      "rgbContrast": "255 255 255",
+      "contrastRatioVsWhite": 5.78
+    },
+    "dark": {
+      "accent": "#447aee",
+      "accentSoft": "#739bf2",
+      "accentContrast": "#ffffff",
+      "rgb": "68 122 238",
+      "rgbSoft": "115 155 242",
+      "rgbContrast": "255 255 255",
+      "contrastRatioVsSlate950": 5.06
+    }
+  }
+}

@@ -6,8 +6,11 @@
   "description": "Personal portfolio of Pedro Luis Lobato Barros — Software Engineer (Core Logic Lead).",
   "scripts": {
     "dev": "vite",
+    "extract-palette": "node scripts/extract-palette.mjs",
+    "prebuild": "node scripts/extract-palette.mjs",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
+    "deploy:local": "node scripts/local-deploy.mjs",
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
@@ -19,6 +22,7 @@
     "@vue/tsconfig": "^0.9.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.10",
     "typescript": "^6.0.3",
     "vite": "^5.4.2",

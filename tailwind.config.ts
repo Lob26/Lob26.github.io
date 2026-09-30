@@ -24,8 +24,9 @@ const config: Config = {
       },
       colors: {
         accent: {
-          DEFAULT: '#2563eb',
-          soft: '#3b82f6',
+          DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
+          soft: 'rgb(var(--color-accent-soft) / <alpha-value>)',
+          contrast: 'rgb(var(--color-accent-contrast) / <alpha-value>)',
         },
       },
     },

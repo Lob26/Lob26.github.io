@@ -56,7 +56,7 @@ const growthPath = computed(() => [...experience].reverse())
           >
             <span
               v-if="role.level === 3"
-              class="font-mono text-[10px] font-bold text-white"
+              class="font-mono text-[10px] font-bold text-accent-contrast"
               aria-hidden="true"
             >★</span>
           </span>
