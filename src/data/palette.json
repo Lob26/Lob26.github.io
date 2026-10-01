@@ -1,27 +1,27 @@
 {
   "source": "public/avatar.jpg",
-  "isFallback": true,
-  "sourceHex": "#2563eb",
-  "hue": 221,
-  "saturation": 0.83,
+  "isFallback": false,
+  "sourceHex": "#fcd605",
+  "hue": 51,
+  "saturation": 0.98,
   "tokens": {
     "light": {
-      "accent": "#1057ef",
-      "accentSoft": "#2d69eb",
+      "accent": "#867203",
+      "accentSoft": "#aa9109",
       "accentContrast": "#ffffff",
-      "rgb": "16 87 239",
-      "rgbSoft": "45 105 235",
+      "rgb": "134 114 3",
+      "rgbSoft": "170 145 9",
       "rgbContrast": "255 255 255",
-      "contrastRatioVsWhite": 5.78
+      "contrastRatioVsWhite": 4.75
     },
     "dark": {
-      "accent": "#447aee",
-      "accentSoft": "#739bf2",
-      "accentContrast": "#ffffff",
-      "rgb": "68 122 238",
-      "rgbSoft": "115 155 242",
-      "rgbContrast": "255 255 255",
-      "contrastRatioVsSlate950": 5.06
+      "accent": "#f4d425",
+      "accentSoft": "#f2da5a",
+      "accentContrast": "#020617",
+      "rgb": "244 212 37",
+      "rgbSoft": "242 218 90",
+      "rgbContrast": "2 6 23",
+      "contrastRatioVsSlate950": 13.73
     }
   }
 }
