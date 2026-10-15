@@ -236,8 +236,8 @@ export const experience: ExperienceEntry[] = [
     },
     level: 3,
     period: {
-      en: 'August 2024 — Present',
-      es: 'Agosto 2024 — Actualidad',
+      en: 'August 2024 — October 2026',
+      es: 'Agosto 2024 — Octubre 2026',
     },
     location: {
       en: 'Bogotá, Colombia · Hybrid',
@@ -693,8 +693,8 @@ export const ui = {
   experience: {
     eyebrow: { en: 'A path, not a list', es: 'Un camino, no una lista' },
     heading: {
-      en: 'From intern to Core Logic Lead at Duppla',
-      es: 'De practicante a Líder de Lógica Central en Duppla',
+      en: 'From intern to Core Logic Lead at Duppla (2024–2026)',
+      es: 'De practicante a Líder de Lógica Central en Duppla (2024–2026)',
     },
     seniorityLabel: { en: 'Responsibility', es: 'Responsabilidad' },
     stakeholdersLabel: { en: 'Partners', es: 'Stakeholders' },
