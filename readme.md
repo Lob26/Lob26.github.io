@@ -1,6 +1,6 @@
 # Pedro Lobato — Portfolio
 
-Personal portfolio for **Pedro Luis Lobato Barros**, Software Engineer (former Core Logic Lead at Duppla, Aug 2024 – Oct 2026). Built with Vue 3, Vite, and Tailwind CSS, deployed to GitHub Pages.
+Personal portfolio for **Pedro Luis Lobato Barros**, Software Engineer (Duppla, Aug 2024 – Oct 2026; open to new roles). Built with Vue 3, Vite, and Tailwind CSS, deployed to GitHub Pages.
 
 ## Stack
 
