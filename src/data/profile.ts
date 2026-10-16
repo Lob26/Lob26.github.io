@@ -110,8 +110,8 @@ export const profile: Profile = {
     es: 'Ingeniero de Software',
   },
   subtitle: {
-    en: 'Ex-Duppla · Core Logic & Production Ownership · Open to new roles',
-    es: 'Ex Duppla · Lógica central y responsable en producción · Abierto a nuevos roles',
+    en: 'Former Core Logic Lead at Duppla · Production Ownership · Open to new roles',
+    es: 'Ex Líder de Lógica Central en Duppla · Responsable en producción · Abierto a nuevos roles',
   },
   location: {
     en: 'Bogotá D.C., Colombia · Remote-first · EN / ES',
@@ -150,10 +150,10 @@ export const profile: Profile = {
   pillars: [
     {
       label: { en: 'Last role', es: 'Último rol' },
-      value: { en: 'Software Engineer · Duppla', es: 'Ingeniero de Software · Duppla' },
+      value: { en: 'Software Engineer · Core Logic Lead', es: 'Ingeniero de Software · Líder de Lógica Central' },
       detail: {
-        en: 'Owned the engines behind real-estate pricing, client screening and contract generation, 2024–2026.',
-        es: 'Responsable de los motores de precios inmobiliarios, evaluación de clientes y generación de contratos, 2024–2026.',
+        en: 'At Duppla, 2024–2026: owned the engines behind real-estate pricing, client screening and contract generation.',
+        es: 'En Duppla, 2024–2026: responsable de los motores de precios inmobiliarios, evaluación de clientes y generación de contratos.',
       },
     },
     {
@@ -227,12 +227,12 @@ export const experience: ExperienceEntry[] = [
   {
     company: 'Duppla',
     role: {
-      en: 'Software Engineer — Core Logic & Production Ownership',
-      es: 'Ingeniero de Software — Lógica central y producción',
+      en: 'Software Engineer — Core Logic Lead',
+      es: 'Ingeniero de Software — Líder de Lógica Central',
     },
     seniority: {
-      en: 'Technical ownership · Cross-functional bridge',
-      es: 'Responsabilidad técnica · Puente transversal',
+      en: 'Technical ownership · Cross-functional lead',
+      es: 'Responsabilidad técnica · Liderazgo transversal',
     },
     level: 3,
     period: {
@@ -693,8 +693,8 @@ export const ui = {
   experience: {
     eyebrow: { en: 'A path, not a list', es: 'Un camino, no una lista' },
     heading: {
-      en: 'From intern to owning Duppla\'s core logic (2024–2026)',
-      es: 'De practicante a responsable de la lógica central de Duppla (2024–2026)',
+      en: 'From intern to Core Logic Lead at Duppla (2024–2026)',
+      es: 'De practicante a Líder de Lógica Central en Duppla (2024–2026)',
     },
     seniorityLabel: { en: 'Responsibility', es: 'Responsabilidad' },
     stakeholdersLabel: { en: 'Partners', es: 'Stakeholders' },

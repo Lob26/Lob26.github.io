@@ -1,17 +1,7 @@
 % =============================================================================
-% Two-column layout variant -- experiment, not the primary CV.
-%
-% Same content as ivy.tex, restructured into the sidebar layout the Enhancv
-% preview suggested: Experience running down a wide left column, Summary /
-% Skills / Education / Languages stacked in a narrow right column.
-%
-% Purpose is an A/B test against ivy.tex on a second ATS checker. Be aware of
-% the bias built into the comparison: a two-column body is the layout most
-% likely to break naive text extraction, because the PDF content stream
-% interleaves the columns. paracol emits one column's blocks then the other's,
-% which is the best case; a parser that reads strictly by vertical position
-% will still splice sidebar lines into the middle of Experience bullets.
-% Verify with `pdftotext double-column.pdf -` before trusting a score.
+% Two-column variant of ivy.tex: same content, different layout -- edit both.
+% Two columns are the layout most likely to break ATS text extraction; paracol
+% emits column by column (the best case). Check `pdftotext double-column.pdf -`.
 % =============================================================================
 \documentclass[10pt,a4paper]{article}
 
@@ -30,7 +20,7 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 
-% --- Palette: same values as ivy.tex so only the layout differs --------------
+% --- Palette (same values as ivy.tex) --------------------------------------
 \definecolor{ink}{HTML}{0B1220}
 \definecolor{navy}{HTML}{1D4ED8}
 \definecolor{azure}{HTML}{2563EB}
@@ -40,9 +30,8 @@
 \definecolor{whisper}{HTML}{EFF6FF}
 
 % --- Building blocks --------------------------------------------------------
-% Section heading: upright caps with the rule UNDERNEATH. Never beside the
-% text -- a rule sharing the heading's baseline gets merged into the word by
-% OCR, which is what cost ivy.tex its "Skills" and "Summary" headings.
+% Section heading: rule UNDERNEATH, never on the same baseline (OCR merges it
+% into the word -- see ivy.tex).
 \newcommand{\cvsection}[1]{%
   \needspace{3\baselineskip}%
   \par\vspace{2.2ex}%
@@ -82,9 +71,7 @@
 \begin{document}
 
 % --- Header: full width, single column --------------------------------------
-% Contact details run as one horizontal band UNDER the name rather than in a
-% right-hand block level with it. In ivy.tex the side-by-side arrangement is
-% what makes OCR read across the two and shred the surname and phone number.
+% Contacts in a band UNDER the name: side by side, OCR reads across the two.
 {\fontsize{26}{30}\selectfont\color{ink}\bfseries Pedro Luis Lobato Barros}\par
 \vspace{0.6ex}
 {\large\color{navy} Software Engineer\, \textbar\, Core Logic \& Production Ownership}\par
@@ -175,9 +162,7 @@
 {\color{navy}\small Universidad de los Andes}\par
 {\color{softgray}\small Bogotá, Colombia \textbar\ Expected 2027}\par
 
-% No proficiency dots. Four-of-five filled circles are pure decoration: an ATS
-% drops the vector graphic entirely, and a human reads "C1" faster and more
-% precisely than they count dots. The CEFR level carries all of the meaning.
+% No proficiency dots: an ATS drops them, and "C1" says more.
 \cvsection{Languages}
 {\color{ink}\small English} \hfill {\color{navy}\small\bfseries C1}\par
 \vspace{0.4ex}
