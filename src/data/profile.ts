@@ -110,8 +110,8 @@ export const profile: Profile = {
     es: 'Ingeniero de Software',
   },
   subtitle: {
-    en: 'Core Logic Lead · Production Ownership',
-    es: 'Líder de Lógica Central · Responsable en producción',
+    en: 'Former Core Logic Lead at Duppla · Production Ownership',
+    es: 'Ex Líder de Lógica Central en Duppla · Responsable en producción',
   },
   location: {
     en: 'Bogotá D.C., Colombia · Remote-first · EN / ES',
@@ -123,14 +123,14 @@ export const profile: Profile = {
   },
   bio: {
     en:
-      'Owner of the three engines a high-growth Fintech × Proptech business runs on — property valuation, client screening and contract generation — ' +
-      'and of how they behave in production. Cut operational wait times by up to 96%, caught and repelled a live attack on production, ' +
+      'Until October 2026, owner at Duppla of the three engines a high-growth Fintech × Proptech business runs on — property valuation, client screening and contract generation — ' +
+      'and of how they behaved in production. Cut operational wait times by up to 96%, caught and repelled a live attack on production, ' +
       'and bridged backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). ' +
       'Sole engineer on every core engine I have built: I grow by taking on harder systems, not larger teams. ' +
       'Fluent across English and Spanish with Legal, Commercial and Operations.',
     es:
-      'Responsable de los tres motores sobre los que opera una empresa Fintech × Proptech de alto crecimiento —valoración de inmuebles, evaluación de clientes y generación de contratos— ' +
-      'y de cómo se comportan en producción. Reduje tiempos operativos hasta en un 96 %, detecté y repelí un ataque en vivo sobre producción, ' +
+      'Hasta octubre de 2026, responsable en Duppla de los tres motores sobre los que opera una empresa Fintech × Proptech de alto crecimiento —valoración de inmuebles, evaluación de clientes y generación de contratos— ' +
+      'y de cómo se comportaban en producción. Reduje tiempos operativos hasta en un 96 %, detecté y repelí un ataque en vivo sobre producción, ' +
       'y conecté sistemas backend (Python, Go, Ruby) con ecosistemas CRM (Salesforce). ' +
       'Único ingeniero en cada motor central que he construido: crezco asumiendo sistemas más difíciles, no equipos más grandes. ' +
       'Fluidez entre inglés y español con Legal, Comercial y Operaciones.',
@@ -149,11 +149,11 @@ export const profile: Profile = {
   githubVanity: 'Lob26',
   pillars: [
     {
-      label: { en: 'Role', es: 'Rol' },
-      value: { en: 'Core Logic Lead', es: 'Líder de Lógica Central' },
+      label: { en: 'Last role', es: 'Último rol' },
+      value: { en: 'Ex-Core Logic Lead · Duppla', es: 'Ex Líder de Lógica Central · Duppla' },
       detail: {
-        en: 'Owner of the engines behind real-estate pricing, client screening and contract generation.',
-        es: 'Responsable de los motores de precios inmobiliarios, evaluación de clientes y generación de contratos.',
+        en: 'Owned the engines behind real-estate pricing, client screening and contract generation, 2024–2026.',
+        es: 'Responsable de los motores de precios inmobiliarios, evaluación de clientes y generación de contratos, 2024–2026.',
       },
     },
     {
@@ -204,21 +204,21 @@ export const profile: Profile = {
     },
     items: [
       {
-        en: 'Credentialing code still running with minimal maintenance two years after launch.',
-        es: 'Código de credenciales que sigue corriendo con mantenimiento mínimo dos años después del lanzamiento.',
+        en: 'Credentialing code still running with minimal maintenance two years after launch, when I left.',
+        es: 'Código de credenciales que seguía corriendo con mantenimiento mínimo dos años después del lanzamiento, cuando me fui.',
       },
       {
-        en: 'A contract engine issuing every contract the company signs, while sitting in maintenance.',
-        es: 'Un motor que emite todos los contratos que firma la compañía, mientras está en mantenimiento.',
+        en: 'A contract engine issuing every contract the company signed, while sitting in maintenance.',
+        es: 'Un motor que emitía todos los contratos que firmaba la compañía, mientras estaba en mantenimiento.',
       },
       {
-        en: 'A backend posture that has held as attack volume grew.',
-        es: 'Una postura de backend que ha aguantado mientras crecía el volumen de ataques.',
+        en: 'A backend posture that held through my departure as attack volume grew.',
+        es: 'Una postura de backend que aguantó hasta mi salida mientras crecía el volumen de ataques.',
       },
     ],
     note: {
-      en: 'I measure the work by what it does after I stop touching it.',
-      es: 'Mido el trabajo por lo que hace después de que dejo de tocarlo.',
+      en: 'I measure the work by what it does after I stop touching it — and after I leave.',
+      es: 'Mido el trabajo por lo que hace después de que dejo de tocarlo, y después de que me voy.',
     },
   },
 }
@@ -246,10 +246,10 @@ export const experience: ExperienceEntry[] = [
     summary: {
       en:
         'Translator between engineering and the commercial, legal and operations teams — and the engineer who then builds what the conversation agreed on. ' +
-        'My weeks move between code, architecture decisions, and the conversations that make those decisions land.',
+        'My weeks moved between code, architecture decisions, and the conversations that made those decisions land.',
       es:
         'Traductor entre ingeniería y los equipos comercial, legal y de operaciones —y el ingeniero que después construye lo que se acordó en esa conversación. ' +
-        'Mis semanas se mueven entre código, decisiones de arquitectura y las conversaciones que hacen que esas decisiones aterricen.',
+        'Mis semanas se movían entre código, decisiones de arquitectura y las conversaciones que hacían que esas decisiones aterrizaran.',
     },
     highlights: [
       {
@@ -261,9 +261,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'Commercial · Operations', es: 'Comercial · Operaciones' },
         detail: {
           en:
-            'Rebuilt the Real Estate Evaluator over four iterations: full backend automation, then a human-in-the-loop review layer, then a migration off Retool once low-code became the constraint rather than the shortcut, then an end-to-end pass over back and front. Analyst time per property went 90 minutes to 15 to 10 to 4 on the happy path. The engine sustains 1,100 automated evaluations a day, and the 3 minutes an automated run still takes is 90 seconds of a third-party data provider, not our code.',
+            'Rebuilt the Real Estate Evaluator over four iterations: full backend automation, then a human-in-the-loop review layer, then a migration off Retool once low-code became the constraint rather than the shortcut, then an end-to-end pass over back and front. Analyst time per property went 90 minutes to 15 to 10 to 4 on the happy path. The engine sustained 1,100 automated evaluations a day, and of the 3 minutes an automated run took, 90 seconds belonged to a third-party data provider, not the code.',
           es:
-            'Reconstruí el Evaluador Inmobiliario en cuatro iteraciones: primero la automatización completa del backend, después una capa de revisión con humano en el ciclo, después la migración fuera de Retool cuando el low-code pasó de atajo a restricción, y finalmente una pasada de punta a punta sobre back y front. El tiempo del analista por inmueble pasó de 90 minutos a 15, a 10 y a 4 en el camino feliz. El motor sostiene 1.100 evaluaciones automáticas al día, y de los 3 minutos que aún tarda una corrida automática, 90 segundos son de un proveedor de datos externo, no de nuestro código.',
+            'Reconstruí el Evaluador Inmobiliario en cuatro iteraciones: primero la automatización completa del backend, después una capa de revisión con humano en el ciclo, después la migración fuera de Retool cuando el low-code pasó de atajo a restricción, y finalmente una pasada de punta a punta sobre back y front. El tiempo del analista por inmueble pasó de 90 minutos a 15, a 10 y a 4 en el camino feliz. El motor sostenía 1.100 evaluaciones automáticas al día, y de los 3 minutos que tardaba una corrida automática, 90 segundos eran de un proveedor de datos externo, no del código.',
         },
       },
       {
@@ -275,9 +275,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'Engineering · Leadership', es: 'Ingeniería · Dirección' },
         detail: {
           en:
-            'Months before it mattered I had added a deliberately small detector — two heuristic buckets: HTTP exceptions carrying known attack signatures, and sources accumulating failed requests. When a bot exposed our full API surface and attacks hit billing and reporting within minutes, that cheap signal is what caught it live. I shipped endpoint-level defenses in real time and hardened the backend into a posture that has since repelled 100% of subsequent attempts — attack volume has kept growing, the success rate has stayed at zero.',
+            'Months before it mattered I had added a deliberately small detector — two heuristic buckets: HTTP exceptions carrying known attack signatures, and sources accumulating failed requests. When a bot exposed the full API surface and attacks hit billing and reporting within minutes, that cheap signal is what caught it live. I shipped endpoint-level defenses in real time and hardened the backend into a posture that repelled 100% of subsequent attempts through my departure — attack volume kept growing, the success rate stayed at zero.',
           es:
-            'Meses antes de que importara había agregado un detector deliberadamente pequeño: dos buckets heurísticos —excepciones HTTP con firmas de ataque conocidas, y orígenes que acumulan peticiones fallidas. Cuando un bot expuso toda nuestra superficie de API y en minutos empezaron los ataques contra cobranza y reportes, esa señal barata fue la que lo detectó en vivo. Desplegué defensas a nivel de endpoint en tiempo real y endurecí el backend en una postura que desde entonces ha repelido el 100 % de los intentos posteriores: el volumen sigue subiendo, la tasa de éxito sigue en cero.',
+            'Meses antes de que importara había agregado un detector deliberadamente pequeño: dos buckets heurísticos —excepciones HTTP con firmas de ataque conocidas, y orígenes que acumulan peticiones fallidas. Cuando un bot expuso toda nuestra superficie de API y en minutos empezaron los ataques contra cobranza y reportes, esa señal barata fue la que lo detectó en vivo. Desplegué defensas a nivel de endpoint en tiempo real y endurecí el backend en una postura que repelió el 100 % de los intentos posteriores hasta mi salida: el volumen siguió subiendo, la tasa de éxito se mantuvo en cero.',
         },
       },
       {
@@ -292,9 +292,9 @@ export const experience: ExperienceEntry[] = [
         },
         detail: {
           en:
-            'Sole designer and owner of the contract generation engine — unowned work I picked up after making the case for it — now the only path through which the company issues contracts. I modelled the legal document as validated data instead of a text template: typed placeholders and validation rules refuse an incomplete contract before it reaches a lawyer. Review errors down 90%, request-to-approval turnaround down 40%. Load-tested to roughly fifteen times current daily volume in a single hour, where the ceiling is the document provider\'s rate limit rather than the pipeline — sized for two orders of magnitude of growth, not for today.',
+            'Sole designer and owner of the contract generation engine — unowned work I picked up after making the case for it — which by my departure was the only path through which the company issued contracts. I modelled the legal document as validated data instead of a text template: typed placeholders and validation rules refuse an incomplete contract before it reaches a lawyer. Review errors down 90%, request-to-approval turnaround down 40%. Load-tested to roughly fifteen times the daily volume of the time in a single hour, where the ceiling was the document provider\'s rate limit rather than the pipeline — sized for two orders of magnitude of growth, not for the volume of the day.',
           es:
-            'Diseñé y soy el único responsable del motor de generación de contratos —trabajo sin dueño que asumí después de argumentar su urgencia— y hoy es la única vía por la que la compañía emite contratos. Modelé el documento legal como datos validados en vez de una plantilla de texto: los placeholders tipados y las reglas de validación rechazan un contrato incompleto antes de que llegue a un abogado. 90 % menos errores de revisión y 40 % menos tiempo entre solicitud y aprobación. Probado bajo carga a unas quince veces el volumen diario actual en una sola hora, donde el techo es el límite de peticiones del proveedor del documento y no el pipeline: dimensionado para dos órdenes de magnitud de crecimiento, no para hoy.',
+            'Diseñé y fui el único responsable del motor de generación de contratos —trabajo sin dueño que asumí después de argumentar su urgencia—, que al momento de mi salida era la única vía por la que la compañía emitía contratos. Modelé el documento legal como datos validados en vez de una plantilla de texto: los placeholders tipados y las reglas de validación rechazan un contrato incompleto antes de que llegue a un abogado. 90 % menos errores de revisión y 40 % menos tiempo entre solicitud y aprobación. Probado bajo carga a unas quince veces el volumen diario de entonces en una sola hora, donde el techo era el límite de peticiones del proveedor del documento y no el pipeline: dimensionado para dos órdenes de magnitud de crecimiento, no para el volumen de entonces.',
         },
       },
       {
@@ -305,9 +305,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'Commercial · RevOps', es: 'Comercial · RevOps' },
         detail: {
           en:
-            'Not a Salesforce engineer — the engineer on the other side of the seam. I know the org\'s data model, SOQL/SOSL, Apex and the REST surface well enough to be the one proposing the schema and optimisation changes, and I contribute the integration side: data cleansing, shared utilities, and keeping CRM records consistent enough for the revenue team to trust them.',
+            'Not a Salesforce engineer — the engineer on the other side of the seam. I knew the org\'s data model, SOQL/SOSL, Apex and the REST surface well enough to be the one proposing the schema and optimisation changes, and I contributed the integration side: data cleansing, shared utilities, and keeping CRM records consistent enough for the revenue team to trust them.',
           es:
-            'No soy ingeniero de Salesforce: soy el ingeniero del otro lado de la costura. Conozco el modelo de datos de la org, SOQL/SOSL, Apex y la superficie REST lo suficiente como para ser quien propone los cambios de esquema y de optimización, y aporto el lado de la integración: limpieza de datos, utilidades compartidas y mantener los registros del CRM lo bastante consistentes como para que el equipo de ingresos confíe en ellos.',
+            'No era ingeniero de Salesforce: era el ingeniero del otro lado de la costura. Conocía el modelo de datos de la org, SOQL/SOSL, Apex y la superficie REST lo suficiente como para ser quien proponía los cambios de esquema y de optimización, y aportaba el lado de la integración: limpieza de datos, utilidades compartidas y mantener los registros del CRM lo bastante consistentes como para que el equipo de ingresos confiara en ellos.',
         },
       },
       {
@@ -319,9 +319,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'Engineering', es: 'Ingeniería' },
         detail: {
           en:
-            'Built AWS and Slack wrappers now used by the whole team — four engineers, every backend — so nobody hand-rolls a client per service. 30% of technical debt gone, and the next engineer spends their first day shipping rather than decoding. The front-end architecture I designed for contract generation became the pattern the evaluator rebuild was based on, and I audit code I do not own and take the reliability defects I find there.',
+            'Built AWS and Slack wrappers adopted by the whole team — four engineers, every backend — so nobody hand-rolled a client per service. 30% of technical debt gone, and the next engineer spent their first day shipping rather than decoding. The front-end architecture I designed for contract generation became the pattern the evaluator rebuild was based on, and I audited code I did not own and took on the reliability defects I found there.',
           es:
-            'Construí wrappers de AWS y Slack que hoy usa todo el equipo —cuatro ingenieros, todos los backends— para que nadie arme un cliente por servicio. 30 % de deuda técnica menos, y el siguiente ingeniero dedica su primer día a entregar, no a descifrar. La arquitectura de front que diseñé para la generación de contratos se convirtió en el patrón sobre el que se reconstruyó el evaluador, y audito código que no es mío y me hago cargo de los defectos de confiabilidad que encuentro ahí.',
+            'Construí wrappers de AWS y Slack que adoptó todo el equipo —cuatro ingenieros, todos los backends— para que nadie armara un cliente por servicio. 30 % de deuda técnica menos, y el siguiente ingeniero dedicaba su primer día a entregar, no a descifrar. La arquitectura de front que diseñé para la generación de contratos se convirtió en el patrón sobre el que se reconstruyó el evaluador, y auditaba código que no era mío y me hacía cargo de los defectos de confiabilidad que encontraba ahí.',
         },
       },
       {
@@ -332,9 +332,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'Engineering · Leadership', es: 'Ingeniería · Dirección' },
         detail: {
           en:
-            'When AI-generated internal front-ends started appearing, I argued at the third one that the pattern outruns ownership faster than anyone expects, and that the cost arrives later as risk nobody has scoped. The trajectory played out on the timeline I described. I also made the case that a design guide alone cannot steer generated code — without machine-readable context an agent builds a generic product, not yours. I raise this class of problem before it becomes a ticket.',
+            'When AI-generated internal front-ends started appearing, I argued at the third one that the pattern outruns ownership faster than anyone expects, and that the cost arrives later as risk nobody has scoped. The trajectory played out on the timeline I described. I also made the case that a design guide alone cannot steer generated code — without machine-readable context an agent builds a generic product, not yours. I raised this class of problem before it became a ticket.',
           es:
-            'Cuando empezaron a aparecer fronts internos generados con IA, argumenté en el tercero que el patrón le gana a la propiedad más rápido de lo que cualquiera espera, y que el costo llega después como riesgo que nadie ha dimensionado. La trayectoria se dio en el plazo que describí. También sostuve que una guía de diseño no alcanza para dirigir código generado: sin contexto legible por máquina, un agente construye un producto genérico, no el tuyo. Levanto esta clase de problema antes de que se convierta en un ticket.',
+            'Cuando empezaron a aparecer fronts internos generados con IA, argumenté en el tercero que el patrón le gana a la propiedad más rápido de lo que cualquiera espera, y que el costo llega después como riesgo que nadie ha dimensionado. La trayectoria se dio en el plazo que describí. También sostuve que una guía de diseño no alcanza para dirigir código generado: sin contexto legible por máquina, un agente construye un producto genérico, no el tuyo. Levantaba esta clase de problema antes de que se convirtiera en un ticket.',
         },
       },
     ],
@@ -374,9 +374,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'Legal · Risk · Origination', es: 'Legal · Riesgo · Originación' },
         detail: {
           en:
-            'Given one line of direction — "get this under 10 minutes" — I traced the commercial call flow to find which data actually gated a decision, then rebuilt the Client Evaluator backend around it instead of pre-warming everything. Thirty minutes of manual work collapsed into 3, and the service has since absorbed a 1,500-evaluation day against a normal load of 170 without failing.',
+            'Given one line of direction — "get this under 10 minutes" — I traced the commercial call flow to find which data actually gated a decision, then rebuilt the Client Evaluator backend around it instead of pre-warming everything. Thirty minutes of manual work collapsed into 3, and the service went on to absorb a 1,500-evaluation day against a normal load of 170 without failing.',
           es:
-            'Con una sola línea de dirección —«baja esto de 10 minutos»— rastreé el flujo de llamadas comerciales para encontrar qué datos realmente condicionaban la decisión, y reconstruí el backend del Evaluador de Clientes alrededor de eso en vez de pre-cargar todo. Treinta minutos de trabajo manual se convirtieron en 3, y desde entonces el servicio absorbió un día de 1.500 evaluaciones contra una carga normal de 170 sin fallar.',
+            'Con una sola línea de dirección —«baja esto de 10 minutos»— rastreé el flujo de llamadas comerciales para encontrar qué datos realmente condicionaban la decisión, y reconstruí el backend del Evaluador de Clientes alrededor de eso en vez de pre-cargar todo. Treinta minutos de trabajo manual se convirtieron en 3, y más adelante el servicio absorbió un día de 1.500 evaluaciones contra una carga normal de 170 sin fallar.',
         },
       },
       {
@@ -387,9 +387,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'People Ops', es: 'People Ops' },
         detail: {
           en:
-            'Designed a Slack automation for attendance and office logistics that the whole HQ uses daily.',
+            'Designed a Slack automation for attendance and office logistics that the whole HQ used daily through my departure.',
           es:
-            'Diseñé una automatización sobre Slack para asistencia y logística de oficina que toda la sede usa a diario.',
+            'Diseñé una automatización sobre Slack para asistencia y logística de oficina que toda la sede usó a diario hasta mi salida.',
         },
       },
       {
@@ -400,9 +400,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'IT', es: 'TI' },
         detail: {
           en:
-            'Shipped credentialing code still running with minimal maintenance two years on — the quiet kind of reliability.',
+            'Shipped credentialing code that was still running with minimal maintenance two years on, when I left — the quiet kind of reliability.',
           es:
-            'Entregué código de credenciales que dos años después sigue corriendo con mantenimiento mínimo: el tipo de confiabilidad silenciosa.',
+            'Entregué código de credenciales que dos años después, cuando me fui, seguía corriendo con mantenimiento mínimo: el tipo de confiabilidad silenciosa.',
         },
       },
     ],
@@ -427,9 +427,9 @@ export const projects: Project[] = [
     },
     technicalSolution: {
       en:
-        'Four iterations, each answering the constraint the last one exposed. Full backend automation first; then a human-in-the-loop review layer on Retool; then a migration into our own intranet once low-code turned into a fixed-size box that could not absorb the requests coming in; then an end-to-end pass over back and front — events, caching, vectorised scoring — once building the contract engine taught me where the remaining time was hiding. Analyst time went 90 minutes to 15 to 10 to 4 on the happy path, 7 on a normal one. The engine sustains 1,100 automated evaluations a day and 100 human reviews per evaluator; an automated run is 3 minutes, 90 seconds of which belongs to a third-party data provider.',
+        'Four iterations, each answering the constraint the last one exposed. Full backend automation first; then a human-in-the-loop review layer on Retool; then a migration into Duppla\'s own intranet once low-code turned into a fixed-size box that could not absorb the requests coming in; then an end-to-end pass over back and front — events, caching, vectorised scoring — once building the contract engine taught me where the remaining time was hiding. Analyst time went 90 minutes to 15 to 10 to 4 on the happy path, 7 on a normal one. The engine sustained 1,100 automated evaluations a day and 100 human reviews per evaluator; an automated run took 3 minutes, 90 seconds of which belonged to a third-party data provider.',
       es:
-        'Cuatro iteraciones, cada una respondiendo a la restricción que reveló la anterior. Primero la automatización completa del backend; después una capa de revisión con humano en el ciclo sobre Retool; después la migración a nuestra propia intranet cuando el low-code se volvió una caja de tamaño fijo incapaz de absorber los requerimientos que llegaban; y finalmente una pasada de punta a punta sobre back y front —eventos, caché, scoring vectorizado— cuando construir el motor de contratos me enseñó dónde se escondía el tiempo restante. El tiempo del analista pasó de 90 minutos a 15, a 10 y a 4 en el camino feliz, 7 en uno normal. El motor sostiene 1.100 evaluaciones automáticas al día y 100 revisiones humanas por evaluador; una corrida automática toma 3 minutos, de los cuales 90 segundos son de un proveedor de datos externo.',
+        'Cuatro iteraciones, cada una respondiendo a la restricción que reveló la anterior. Primero la automatización completa del backend; después una capa de revisión con humano en el ciclo sobre Retool; después la migración a la intranet propia de Duppla cuando el low-code se volvió una caja de tamaño fijo incapaz de absorber los requerimientos que llegaban; y finalmente una pasada de punta a punta sobre back y front —eventos, caché, scoring vectorizado— cuando construir el motor de contratos me enseñó dónde se escondía el tiempo restante. El tiempo del analista pasó de 90 minutos a 15, a 10 y a 4 en el camino feliz, 7 en uno normal. El motor sostenía 1.100 evaluaciones automáticas al día y 100 revisiones humanas por evaluador; una corrida automática tomaba 3 minutos, de los cuales 90 segundos eran de un proveedor de datos externo.',
     },
     stakeholders: { en: 'Commercial · Operations', es: 'Comercial · Operaciones' },
     metric: {
@@ -459,9 +459,9 @@ export const projects: Project[] = [
     },
     technicalSolution: {
       en:
-        'I traced the commercial call flow first to find which data actually gated a decision, because the naive answer — pre-warm everything — breaks on the leads that reach the stage with fields missing. Full backend rewrite around that finding: new data model, leaner queries, asynchronous scoring. The cycle dropped from 30 minutes to 3, and the service has since absorbed a 1,500-evaluation day against a normal load of 170 without failing — if the top of the funnel widens, the engine is already there.',
+        'I traced the commercial call flow first to find which data actually gated a decision, because the naive answer — pre-warm everything — breaks on the leads that reach the stage with fields missing. Full backend rewrite around that finding: new data model, leaner queries, asynchronous scoring. The cycle dropped from 30 minutes to 3, and the service went on to absorb a 1,500-evaluation day against a normal load of 170 without failing — built so that if the top of the funnel widened, the engine was already there.',
       es:
-        'Primero rastreé el flujo de llamadas comerciales para encontrar qué datos condicionaban realmente la decisión, porque la respuesta ingenua —pre-cargar todo— se rompe con los leads que llegan a esa etapa con campos faltantes. Reescritura completa del backend alrededor de ese hallazgo: nuevo modelo de datos, consultas más livianas y scoring asíncrono. El ciclo cayó de 30 a 3 minutos, y desde entonces el servicio absorbió un día de 1.500 evaluaciones contra una carga normal de 170 sin fallar: si la boca del embudo se ensancha, el motor ya está listo.',
+        'Primero rastreé el flujo de llamadas comerciales para encontrar qué datos condicionaban realmente la decisión, porque la respuesta ingenua —pre-cargar todo— se rompe con los leads que llegan a esa etapa con campos faltantes. Reescritura completa del backend alrededor de ese hallazgo: nuevo modelo de datos, consultas más livianas y scoring asíncrono. El ciclo cayó de 30 a 3 minutos, y más adelante el servicio absorbió un día de 1.500 evaluaciones contra una carga normal de 170 sin fallar: pensado para que, si la boca del embudo se ensanchaba, el motor ya estuviera listo.',
     },
     stakeholders: { en: 'Commercial · Origination', es: 'Comercial · Originación' },
     metric: {
@@ -480,8 +480,8 @@ export const projects: Project[] = [
       es: 'Motor de Automatización de Contratos',
     },
     description: {
-      en: 'The single system of record for every contract the company issues — designed, built and deployed end-to-end as the sole engineer.',
-      es: 'El sistema único por el que la compañía emite todos sus contratos: diseñado, construido y desplegado de punta a punta como único ingeniero.',
+      en: 'The single system of record for every contract Duppla issued — designed, built and deployed end-to-end as the sole engineer.',
+      es: 'El sistema único por el que Duppla emitía todos sus contratos: diseñado, construido y desplegado de punta a punta como único ingeniero.',
     },
     humanProblem: {
       en:
@@ -491,9 +491,9 @@ export const projects: Project[] = [
     },
     technicalSolution: {
       en:
-        'Audited the business process and the data flow before writing anything, then built the real automation from scratch as the sole engineer. Every template rebuilt around typed placeholders, with a validation layer in front of generation so an incomplete or inconsistent contract is refused at the boundary rather than caught at a lawyer\'s desk. It now issues 100% of the company\'s contracts — versioned, validated, auditable — with review errors down 90% and request-to-approval turnaround down 40%. Load-tested in one hour to roughly fifteen times a normal day\'s volume, bounded by the document provider\'s rate limit rather than by the pipeline: sized for two orders of magnitude of growth, not for today. Stable enough since launch to sit in maintenance, owned by one engineer.',
+        'Audited the business process and the data flow before writing anything, then built the real automation from scratch as the sole engineer. Every template rebuilt around typed placeholders, with a validation layer in front of generation so an incomplete or inconsistent contract is refused at the boundary rather than caught at a lawyer\'s desk. By the time I left it issued 100% of the company\'s contracts — versioned, validated, auditable — with review errors down 90% and request-to-approval turnaround down 40%. Load-tested in one hour to roughly fifteen times a normal day\'s volume, bounded by the document provider\'s rate limit rather than by the pipeline: sized for two orders of magnitude of growth, not for the volume of the day. Stable enough after launch to sit in maintenance, owned by one engineer.',
       es:
-        'Audité el proceso de negocio y el flujo de datos antes de escribir una línea, y construí la automatización real desde cero como único ingeniero. Cada plantilla reconstruida alrededor de placeholders tipados, con una capa de validación delante de la generación para que un contrato incompleto o inconsistente se rechace en la frontera y no se descubra en el escritorio de un abogado. Hoy emite el 100 % de los contratos de la compañía —versionados, validados y auditables— con 90 % menos errores de revisión y 40 % menos tiempo entre solicitud y aprobación. Probado bajo carga en una hora a unas quince veces el volumen de un día normal, limitado por el rate limit del proveedor del documento y no por el pipeline: dimensionado para dos órdenes de magnitud de crecimiento, no para hoy. Lo bastante estable desde el lanzamiento para estar en mantenimiento, a cargo de un solo ingeniero.',
+        'Audité el proceso de negocio y el flujo de datos antes de escribir una línea, y construí la automatización real desde cero como único ingeniero. Cada plantilla reconstruida alrededor de placeholders tipados, con una capa de validación delante de la generación para que un contrato incompleto o inconsistente se rechace en la frontera y no se descubra en el escritorio de un abogado. Al momento de mi salida emitía el 100 % de los contratos de la compañía —versionados, validados y auditables— con 90 % menos errores de revisión y 40 % menos tiempo entre solicitud y aprobación. Probado bajo carga en una hora a unas quince veces el volumen de un día normal, limitado por el rate limit del proveedor del documento y no por el pipeline: dimensionado para dos órdenes de magnitud de crecimiento, no para el volumen de entonces. Lo bastante estable tras el lanzamiento para quedar en mantenimiento, a cargo de un solo ingeniero.',
     },
     stakeholders: {
       en: 'Legal · Commercial · Operations',
@@ -520,15 +520,15 @@ export const projects: Project[] = [
     },
     humanProblem: {
       en:
-        'A bot slipped in a crafted request that revealed our full API surface. Within minutes, attacks flooded the billing and reporting endpoints — the kind of hit that moves real money.',
+        'A bot slipped in a crafted request that revealed the company\'s full API surface. Within minutes, attacks flooded the billing and reporting endpoints — the kind of hit that moves real money.',
       es:
-        'Un bot coló una petición armada que reveló toda la superficie de nuestra API. En minutos empezaron los ataques contra los endpoints de cobranza y reportes: justo los que mueven dinero real.',
+        'Un bot coló una petición armada que reveló toda la superficie de la API de la compañía. En minutos empezaron los ataques contra los endpoints de cobranza y reportes: justo los que mueven dinero real.',
     },
     technicalSolution: {
       en:
-        'Months earlier, in my seventh month, I had added a deliberately small detector: raise on error, then sort into two heuristic buckets — HTTP exceptions carrying known attack signatures, and sources accumulating failed requests. It was not a rich feature, and it did not need to be; it is what caught the attack live. I shipped endpoint-level defenses on the targeted routes before they could execute and hardened the backend into a posture that has repelled every subsequent attempt as attack volume has grown.',
+        'Months earlier, in my seventh month, I had added a deliberately small detector: raise on error, then sort into two heuristic buckets — HTTP exceptions carrying known attack signatures, and sources accumulating failed requests. It was not a rich feature, and it did not need to be; it is what caught the attack live. I shipped endpoint-level defenses on the targeted routes before they could execute and hardened the backend into a posture that repelled every subsequent attempt through my departure, even as attack volume grew.',
       es:
-        'Meses antes, en mi séptimo mes, había agregado un detector deliberadamente pequeño: levantar el error y clasificarlo en dos buckets heurísticos —excepciones HTTP con firmas de ataque conocidas, y orígenes que acumulan peticiones fallidas. No era una funcionalidad sofisticada, y no necesitaba serlo: fue lo que detectó el ataque en vivo. Desplegué defensas a nivel de endpoint sobre las rutas comprometidas antes de que pudieran ejecutarse y endurecí el backend en una postura que ha repelido cada intento posterior a medida que el volumen de ataques ha crecido.',
+        'Meses antes, en mi séptimo mes, había agregado un detector deliberadamente pequeño: levantar el error y clasificarlo en dos buckets heurísticos —excepciones HTTP con firmas de ataque conocidas, y orígenes que acumulan peticiones fallidas. No era una funcionalidad sofisticada, y no necesitaba serlo: fue lo que detectó el ataque en vivo. Desplegué defensas a nivel de endpoint sobre las rutas comprometidas antes de que pudieran ejecutarse y endurecí el backend en una postura que repelió cada intento posterior hasta mi salida, aun mientras crecía el volumen de ataques.',
     },
     stakeholders: { en: 'Engineering · Leadership', es: 'Ingeniería · Dirección' },
     metric: {

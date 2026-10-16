@@ -146,11 +146,11 @@
   % engines a high-growth business runs on" reads as inflated from someone two
   % years in, because nothing on the page said the engineering team is four
   % people. Naming it makes the same claim credible instead of grandiose.
-  Software engineer on a four-person team, owning the three engines a Fintech and Proptech business runs on --- property valuation, client screening and contract generation --- and how they behave in production. Cut operational wait times by up to \textbf{96\%}, detected and contained a live attack on production, and bridged backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). Building an individual-contributor career --- depth in harder systems, mentoring teammates where it unblocks them. Fluent across English and Spanish with Legal, Commercial and Operations.
+  Software engineer on a four-person team who owned the three engines a Fintech and Proptech business runs on --- property valuation, client screening and contract generation --- and how they behaved in production. Cut operational wait times by up to \textbf{96\%}, detected and contained a live attack on production, and bridged backend systems (Python, Go, Ruby) with CRM ecosystems (Salesforce). Building an individual-contributor career --- depth in harder systems, mentoring teammates where it unblocks them. Fluent across English and Spanish with Legal, Commercial and Operations.
 }
 
 \vspace{0.2em}
-\callout{\textbf{Systems that stopped needing me.} Credentialing code still running with minimal maintenance two years after launch · a contract engine issuing every contract the company signs while sitting in maintenance · a backend posture that has held as attack volume grew. I measure the work by what it does after I stop touching it.}
+\callout{\textbf{Systems that stopped needing me.} Credentialing code still running with minimal maintenance two years after launch · a contract engine issuing every contract the company signed while sitting in maintenance · a backend posture that held as attack volume grew. I measure the work by what it does after I stop touching it.}
 
 \softrule
 
@@ -252,26 +252,26 @@
   \begin{itemize}
     \item \rolebold{Core Product Ownership} \metric{(--96\%)} \stakeholders{Commercial · Operations}\\
       \impact{Rebuilt the Real Estate Evaluator over four iterations: backend automation, a human-in-the-loop review layer, a migration off Retool once low-code became the constraint rather than the shortcut, then an end-to-end pass over back and front.}
-      \impactnext{Analyst time per property went 90 minutes to 15 to 10 to 4. It sustains 1,100 evaluations a day; of the 3 minutes a run takes, 90 seconds is the data provider, not our code.}
+      \impactnext{Analyst time per property went 90 minutes to 15 to 10 to 4. It sustained 1,100 evaluations a day; of the 3 minutes a run took, 90 seconds was the data provider, not the code.}
     % "100% repelled" was an unfalsifiable absolute -- you cannot evidence zero
     % successful intrusions, and a security interviewer will press on it. The
     % detection latency is the defensible number.
     \item \rolebold{Live Attack Defense} \metric{(caught in minutes)} \stakeholders{Engineering · Leadership}\\
       \impact{Months earlier I had added a deliberately small detector: HTTP exceptions carrying known attack signatures, and sources accumulating failed requests.}
-      \impactnext{When a bot exposed the full API surface and attacks hit billing and reporting within minutes, that cheap signal caught it live. Shipped endpoint-level defenses in real time and hardened the backend; no successful intrusion recorded since, as volume has grown.}
+      \impactnext{When a bot exposed the full API surface and attacks hit billing and reporting within minutes, that cheap signal caught it live. Shipped endpoint-level defenses in real time and hardened the backend; no successful intrusion recorded through my departure, as volume grew.}
     \item \rolebold{Contract Automation} \metric{(--90\% review errors)} \stakeholders{Legal · Commercial · Operations}\\
-      \impact{Sole designer and owner of the contract generation engine --- unowned work I made the case for --- now the company's only contract path. Modelled the legal document as validated data, not a text template: typed placeholders and validation rules refuse an incomplete contract before it reaches a lawyer.}
+      \impact{Sole designer and owner of the contract generation engine --- unowned work I made the case for --- the company's only contract path when I left. Modelled the legal document as validated data, not a text template: typed placeholders and validation rules refuse an incomplete contract before it reaches a lawyer.}
       \impactnext{Review errors down 90\%, request-to-approval turnaround down 40\%. Load-tested at fifteen times daily volume in an hour; the ceiling was the provider's rate limit, not the pipeline --- the hundredfold planned for is a quota change, not a rebuild.}
     \item \rolebold{Salesforce Integration} \metric{(--50\% CRM inconsistencies)} \stakeholders{Commercial · RevOps}\\
-      \impact{Own the seam between the backend and Salesforce: proposed the schema and SOQL/SOSL optimisations the org now runs on.}
+      \impact{Owned the seam between the backend and Salesforce: proposed the schema and SOQL/SOSL optimisations the org ran on.}
       \impactnext{Built the data-cleansing and shared-utility layer that halved record inconsistencies, making CRM data reliable enough for the revenue team to report on.}
     % "-30% tech debt" implied the outstanding balance fell, which nothing
     % measures. The SonarQube regression measured the SLOPE -- how fast new debt
     % arrives -- and that is both what actually changed and a stronger claim:
     % shared infrastructure slows accumulation, it does not repay principal.
     \item \rolebold{Engineering Leverage} \metric{(--30\% debt growth rate)} \stakeholders{Engineering}\\
-      \impact{Custom AWS and Slack wrappers now used across all four engineers and every backend, so nobody hand-rolls a client per service. SonarQube debt accumulation slowed about 30\% against its prior trend once they landed.}
-      \impactnext{The front-end architecture I designed for contract generation became the pattern the evaluator rebuild followed; new engineers ship on day one.}
+      \impact{Custom AWS and Slack wrappers adopted by all four engineers and every backend, so nobody hand-rolled a client per service. SonarQube debt accumulation slowed about 30\% against its prior trend once they landed.}
+      \impactnext{The front-end architecture I designed for contract generation became the pattern the evaluator rebuild followed; new engineers shipped on day one.}
     % Chose 3 -> 25 over "4 I own": the growth is what makes the risk legible.
     % Stated as a measured trend, not as a prediction that came true -- the
     % original ("the trajectory played out on the timeline I described") read as
@@ -291,11 +291,11 @@
   \begin{itemize}
     \item \rolebold{Business Process Migration} \metric{(--90\%)} \stakeholders{Legal · Risk · Origination}\\
       \impact{Given one line of direction --- ``get this under 10 minutes'' --- traced the commercial call flow to find which data actually gated the decision, then rebuilt the Client Evaluator around it instead of pre-warming everything.}
-      \impactnext{Thirty minutes of manual work collapsed into three; it has since absorbed a 1,500-evaluation day against a normal load of 170.}
+      \impactnext{Thirty minutes of manual work collapsed into three; it later absorbed a 1,500-evaluation day against a normal load of 170.}
     \item \rolebold{Internal Logistics} \stakeholders{People Ops}\\
-      \impact{Slack automation for attendance and office logistics still used daily by HQ.}
+      \impact{Slack automation for attendance and office logistics used daily by HQ through Oct 2026.}
     \item \rolebold{Stability} \stakeholders{IT}\\
-      \impact{Credentialing code running with minimal maintenance two years post-launch --- the quiet kind of reliability.}
+      \impact{Credentialing code still running with minimal maintenance two years post-launch, when I left --- the quiet kind of reliability.}
   \end{itemize}
 }
 
