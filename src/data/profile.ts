@@ -319,9 +319,9 @@ export const experience: ExperienceEntry[] = [
         stakeholders: { en: 'Engineering', es: 'Ingeniería' },
         detail: {
           en:
-            'Built AWS and Slack wrappers adopted by the whole team — four engineers, every backend — so nobody hand-rolled a client per service. 30% of technical debt gone, and the next engineer spent their first day shipping rather than decoding. The front-end architecture I designed for contract generation became the pattern the evaluator rebuild was based on, and I audited code I did not own and took on the reliability defects I found there.',
+            'Built AWS and Slack wrappers adopted by the whole team — four engineers, every backend — so nobody hand-rolled a client per service. Once they landed, SonarQube showed new technical debt accumulating about 30% slower than its prior trend, and the next engineer spent their first day shipping rather than decoding. The front-end architecture I designed for contract generation became the pattern the evaluator rebuild was based on, and I audited code I did not own and took on the reliability defects I found there.',
           es:
-            'Construí wrappers de AWS y Slack que adoptó todo el equipo —cuatro ingenieros, todos los backends— para que nadie armara un cliente por servicio. 30 % de deuda técnica menos, y el siguiente ingeniero dedicaba su primer día a entregar, no a descifrar. La arquitectura de front que diseñé para la generación de contratos se convirtió en el patrón sobre el que se reconstruyó el evaluador, y auditaba código que no era mío y me hacía cargo de los defectos de confiabilidad que encontraba ahí.',
+            'Construí wrappers de AWS y Slack que adoptó todo el equipo —cuatro ingenieros, todos los backends— para que nadie armara un cliente por servicio. Tras su llegada, SonarQube mostró la deuda técnica nueva acumulándose cerca de un 30 % más lento que su tendencia previa, y el siguiente ingeniero dedicaba su primer día a entregar, no a descifrar. La arquitectura de front que diseñé para la generación de contratos se convirtió en el patrón sobre el que se reconstruyó el evaluador, y auditaba código que no era mío y me hacía cargo de los defectos de confiabilidad que encontraba ahí.',
         },
       },
       {
